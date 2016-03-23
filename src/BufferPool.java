@@ -20,6 +20,9 @@ public class BufferPool {
 		//insert on bottom take from top
 		//what if u use something already in buffer pool? have to swap 
 		// each block is 4096 bytes
+	
+	boolean dbit;
+	
 	/**
 	 * Constructor for the bufferpool
 	 */
@@ -37,8 +40,15 @@ public class BufferPool {
 	/**
 	 * Inserts into the array
 	 */
-	public void insertA(boolean dbit)
-	{}
+	public void checkDirty(byte e)
+	{
+		//find a way to compare the two to check
+		if (this.equals(e))
+		{
+			dbit = false;
+		}
+		dbit = true;
+	}
 	
 	
 	/**
@@ -52,6 +62,8 @@ public class BufferPool {
 		//figure out if its in the buffer pool or not
 		//if it is don't touch file
 		int loc = bytePos % 1024;
+		if (loc < 1024)
+		{}
 		//find the block number to determine if it is in buffer pool
 		//if it is, access
 		//if it is not in the buffer pool ???????? (access the file)

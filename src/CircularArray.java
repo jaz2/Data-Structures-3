@@ -41,16 +41,23 @@ public class CircularArray {
 	 * Adds onto the array
 	 * @param e
 	 */
-	public boolean add(byte e)
+	public void add(byte e)
 	{
-		if ((front - 2) % max == bottom)
-		{
-			return false;
-		}
-		
-		return true;
+		if ((bottom + 2) % max == front)
+		{ //if it's full
+			//LRU
+			
+		}	
+		bottom = (bottom + 1) % max;
+		a[bottom] = e;
 	}
 	
 	public void remove(byte e)
 	{}
+	
+	public void clear()
+	{
+		front = 1;
+		bottom = 0;
+	}
 }
