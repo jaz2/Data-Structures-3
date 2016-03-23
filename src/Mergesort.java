@@ -31,9 +31,18 @@
 public class Mergesort {
 	//create a temp file
 	//split file and put half in temp
-	//split THAT file and at some point 
+	//split THAT first file and at some point 
 	//eventually sort, prob during merge part
 	//merge sort first half mer.. second and then merge together
+	
+	//merge sort first half
+	//merge sort second half
+	//merge for(half length)
+	//{
+	// compareTo and increment min 
+	// pointer place min value in file
+	//}
+	//
 	
 	/**
 	 * The entry point of the application
