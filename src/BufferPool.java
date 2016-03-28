@@ -115,8 +115,9 @@ public class BufferPool {
 	 * @param numBytesToWrite the number of bytes (4)
 	 * @param bytePos position to start
 	 * @param bytes the array to write in
+	 * @throws IOException 
 	 */
-	public void write(RandomAccessFile f, int numBytesToWrite, int bytePos, byte[] bytes)
+	public void write(RandomAccessFile f, int numBytesToWrite, int bytePos, byte[] bytes) throws IOException
 	{
 		//when you flush, reset the dirty bit to false
 		int blockN = bytePos / 4096;
@@ -128,15 +129,24 @@ public class BufferPool {
 		}
 		if (blockN == blox[i].block)
 		{
-			//what we're supposed to write 
+			System.arraycopy(bytes, 0, blox[i].data, posInBlock, numBytesToWrite);
+			blox[i].dbit = true;
 			//send back to merge sort
 		}
 		else 
 		{
+			f.seek(bytePos);
+			Buffer b = new Buffer(f, i, 4096);
+			f.read(b.data);
+			System.arraycopy(bytes, 0, blox[i].data, posInBlock, numBytesToWrite);
+			blox[i].dbit = true;
+			for (int j = i; j > 0; j--)
+			{
+				blox[j] = blox[j - 1];
+			}
+			blox[0] = b;
 			//read from file, place into buffer and send that back
 		}
-		//write to pos x, checks if buffer has pos (send back if yes)
-		//if not, get from file put in buffer and then write to it)
 	} 
 
 
@@ -161,6 +171,12 @@ public class BufferPool {
 		if (blockN == blox[i].block)
 		{ //send back to merge sort
 			System.arraycopy(blox[i].data, posInBlock, bytes, 0, numBytesRead);
+			Buffer tem = blox[i];
+			for (int j = i; j > 0; j--)
+			{
+				blox[j] = blox[j - 1];
+			}
+			blox[0] = tem;
 		}
 		else 
 		{ //read from file, place into buffer and send that back
@@ -168,6 +184,12 @@ public class BufferPool {
 			Buffer b = new Buffer(f, i, 4096);
 			f.read(b.data);
 			System.arraycopy(b.data, posInBlock, bytes, 0, numBytesRead);
+			for (int k = blox.length - 1; k > 0; k--)
+			{
+				blox[k] = blox[k - 1];
+			}
+			//deal with flush here
+			blox[0] = b;
 		}
 	}
 
