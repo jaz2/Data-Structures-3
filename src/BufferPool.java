@@ -60,38 +60,6 @@ public class BufferPool {
 		{
 			return (file.equals(f));
 		}
-
-		//ask what file length is (for temp it will be 0) to 
-		//check if it's the file or temp
-		//if there is this block at this file, read it in
-
-		//		/**
-		//		 * Checks if the buffer has been changed 
-		//		 * @param e the byte array of the buffer to be checked
-		//		 */
-		//		public void checkDirty(byte[] e)
-		//		{
-		//			int count = 0;
-		//			for (int i = 0; i < array.length - 1; i++)
-		//			{
-		//				if (e[i] == array[i])
-		//				{
-		//					count += 0;
-		//				}
-		//				else 
-		//				{
-		//					count++;
-		//				}
-		//			}
-		//			if (count == 0)
-		//			{
-		//				dbit = false;
-		//			}
-		//			else 
-		//			{
-		//				dbit = true;
-		//			}
-		//		}
 	}
 
 	/**
@@ -140,12 +108,7 @@ public class BufferPool {
 			f.read(b.data);
 			System.arraycopy(bytes, 0, blox[i].data, posInBlock, numBytesToWrite);
 			blox[i].dbit = true;
-			if (blox[blox.length - 1].dbit == true)
-			{
-				f.seek(blox[blox.length - 1].block * 4096);
-				f.write(blox[blox.length - 1].data);
-			}
-			blox[blox.length - 1].dbit = false;
+			flush(blox[blox.length - 1]);		
 			for (int j = i; j > 0; j--)
 			{
 				blox[j] = blox[j - 1];
@@ -190,17 +153,27 @@ public class BufferPool {
 			Buffer b = new Buffer(f, i, 4096);
 			f.read(b.data);
 			System.arraycopy(b.data, posInBlock, bytes, 0, numBytesRead);
-			if (blox[blox.length - 1].dbit == true)
-			{
-				f.seek(blox[blox.length - 1].block * 4096);
-				f.write(blox[blox.length - 1].data);
-			}
-			blox[blox.length - 1].dbit = false;
+			flush(blox[blox.length - 1]);
 			for (int k = blox.length - 1; k > 0; k--)
 			{
 				blox[k] = blox[k - 1];
 			}
 			blox[0] = b;
+		}
+	} //for each buffer flush if it's dirty
+
+	/**
+	 * Flushes 
+	 * @param bu the buffer to flush
+	 * @throws IOException
+	 */
+	public void flush(Buffer bu) throws IOException
+	{
+		if (bu.dbit == true)
+		{
+			bu.file.seek(bu.block * 4096);
+			bu.file.write(bu.data);
+			bu.dbit = false;
 		}
 	}
 
