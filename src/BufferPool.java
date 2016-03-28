@@ -140,6 +140,12 @@ public class BufferPool {
 			f.read(b.data);
 			System.arraycopy(bytes, 0, blox[i].data, posInBlock, numBytesToWrite);
 			blox[i].dbit = true;
+			if (blox[blox.length - 1].dbit == true)
+			{
+				f.seek(blox[blox.length - 1].block * 4096);
+				f.write(blox[blox.length - 1].data);
+			}
+			blox[blox.length - 1].dbit = false;
 			for (int j = i; j > 0; j--)
 			{
 				blox[j] = blox[j - 1];
@@ -184,11 +190,16 @@ public class BufferPool {
 			Buffer b = new Buffer(f, i, 4096);
 			f.read(b.data);
 			System.arraycopy(b.data, posInBlock, bytes, 0, numBytesRead);
+			if (blox[blox.length - 1].dbit == true)
+			{
+				f.seek(blox[blox.length - 1].block * 4096);
+				f.write(blox[blox.length - 1].data);
+			}
+			blox[blox.length - 1].dbit = false;
 			for (int k = blox.length - 1; k > 0; k--)
 			{
 				blox[k] = blox[k - 1];
 			}
-			//deal with flush here
 			blox[0] = b;
 		}
 	}
