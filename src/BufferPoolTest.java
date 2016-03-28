@@ -8,8 +8,8 @@ import org.junit.Test;
  */
 
 /**
- * @author Jazz
- *
+ * @author Jazmine Zurita and Jessica McCready
+ * @version March 22 2016
  */
 public class BufferPoolTest {
 
