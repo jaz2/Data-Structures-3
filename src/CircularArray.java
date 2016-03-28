@@ -5,10 +5,11 @@
 /**
  * @author Jazmine Zurita and Jessica McCready
  *
+ *first just do an array then for performance do circular
  */
 public class CircularArray {
 	
-	private byte a[];
+	private Buffer a[];
 	
 	/**
 	 * the front of the array
@@ -34,7 +35,7 @@ public class CircularArray {
 		front = 1;
 		bottom = 0;
 		max = size + 1;
-		a = new byte[max];
+		a = new Buffer[max];
 	}
 	
 	/**

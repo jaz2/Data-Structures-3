@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.io.RandomAccessFile;
 
 /**
@@ -27,7 +28,7 @@ public class BufferPool {
 		/**
 		 * The array of data in buffer
 		 */
-		public byte array[];
+		public byte data[];
 
 		/**
 		 * The block number
@@ -43,7 +44,7 @@ public class BufferPool {
 
 		public Buffer(RandomAccessFile fil, int num, int size)
 		{
-			array = new byte[size];
+			data = new byte[size];
 			dbit = false;
 			block = num;
 			file = fil;
@@ -96,14 +97,14 @@ public class BufferPool {
 	/**
 	 * Array holding the buffers
 	 */
-	public int blox[]; //this will be the circular array
+	public Buffer blox[]; //this will be the circular array
 
 	/**
 	 * Constructor for the bufferPool
 	 */
 	public BufferPool(int numOfBlocks)
 	{ //make an array storing buffers
-		blox = new int[numOfBlocks];
+		blox = new Buffer[numOfBlocks];
 	}
 
 	//first thing to do is take info and put it into buffers
@@ -115,17 +116,17 @@ public class BufferPool {
 	 * @param bytePos position to start
 	 * @param bytes the array to write in
 	 */
-	public void write(RandomAccessFile file, int numBytesToWrite, int bytePos, byte[] bytes)
+	public void write(RandomAccessFile f, int numBytesToWrite, int bytePos, byte[] bytes)
 	{
 		//when you flush, reset the dirty bit to false
 		int blockN = bytePos / 4096;
 		int posInBlock = bytePos % 4096;
 		int i = 0;
-		while (blockN != blox[i] && i < blox.length)
+		while (blockN != blox[i].block && i < blox.length && f.equals(blox[i].file))
 		{
 			i++;
 		}
-		if (blockN == blox[i])
+		if (blockN == blox[i].block)
 		{
 			//what we're supposed to write 
 			//send back to merge sort
@@ -145,35 +146,29 @@ public class BufferPool {
 	 * @param numBytesRead will always be 4 for this project
 	 * @param bytePos the position of the byte
 	 * @param bytes the array to return 
+	 * @throws IOException 
 	 */
-	public void read(RandomAccessFile file, int numBytesRead, int bytePos, byte[] bytes)
+	public void read(RandomAccessFile f, int numBytesRead, int bytePos, byte[] bytes) throws IOException
 	{
 		//locToStart = blocknum * block_size + posInBlock;
 		int blockN = bytePos / 4096; //block
-		int pos = bytePos % 4096; //pos in block
-		int maxSize = blox.length * 4096;
+		int posInBlock = bytePos % 4096; //pos in block
 		int i = 0;
-		while (blockN != blox[i] && i < blox.length)
+		while (blockN != blox[i].block && i < blox.length && f.equals(blox[i].file))
 		{
 			i++;
 		}
-		if (blockN == blox[i])
-		{
-			//send back to merge sort
-			//what and how to send back to merge sort
+		if (blockN == blox[i].block)
+		{ //send back to merge sort
+			System.arraycopy(blox[i].data, posInBlock, bytes, 0, numBytesRead);
 		}
 		else 
-		{
-			//read from file, place into buffer and send that back
+		{ //read from file, place into buffer and send that back
+			f.seek(bytePos);
+			Buffer b = new Buffer(f, i, 4096);
+			f.read(b.data);
+			System.arraycopy(b.data, posInBlock, bytes, 0, numBytesRead);
 		}
-		//merge sort accesses bufferpool
-		//check to see if it's in buffer then send it back to sort
-		//if it's not then read from file  place into buffer and send that back
-
-
-		//find the block number to determine if it is in buffer pool
-		//if it is, access
-		//if it is not in the buffer pool ???????? (access the file)
 	}
 
 	//make a write stats method here
