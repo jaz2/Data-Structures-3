@@ -35,14 +35,7 @@ public class Mergesort {
 	//eventually sort, prob during merge part
 	//merge sort first half mer.. second and then merge together
 	
-	//merge sort first half
-	//merge sort second half
-	//merge for(half length)
-	//{
-	// compareTo and increment min 
-	// pointer place min value in file
-	//}
-	//
+	//need class for statistics
 	
 	/**
 	 * The entry point of the application
@@ -51,5 +44,16 @@ public class Mergesort {
 	 */
 	public static void main(String[] args) {
 		System.out.println("Hello, World");
+	}
+	
+	public void sort()
+	{
+		//merge sort first half 
+		//merge sort second half
+		//merge for(half length * 2)
+		//{
+		// compareTo and increment min 
+		// pointer place min value in file
+		//}
 	}
 }
