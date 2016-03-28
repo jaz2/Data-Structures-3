@@ -23,6 +23,9 @@ public class BufferPoolTest {
 	@Test
 	public void test() {
 		fail("Not yet implemented");
-	}
+	}//to randomaccessfile write something and then flush it 
+	//make sure it's there
+	//give buffer pool at least 1 buffer
 
+	//do write TESTS!!!!!
 }
