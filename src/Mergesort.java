@@ -62,7 +62,15 @@ public class Mergesort {
 			RandomAccessFile f = new RandomAccessFile(args[1], "rw");
 			bp = new BufferPool(Integer.parseInt(args[2]));
 
-			sort(f, tem, 0, (int)f.length() / 4); //fix
+			long start = System.currentTimeMillis();
+			sort(f, tem, 0, (int)f.length() / 4); 
+			long end = System.currentTimeMillis();
+			long time = end - start;
+			
+			RandomAccessFile st = new RandomAccessFile(args[3], "rw");
+			st.writeChars(args[1] + "\n");
+			bp.stats(st);
+			st.writeChars(time + "\n");
 		}
 	}
 
