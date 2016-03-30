@@ -42,15 +42,17 @@ extends TestCase {
 	 * Tests the stat file
 	 */
 	@Test
-	public void testStat
+	public void testStat()
 	{
 		String[] args = new String[3];
 		args[0] = "inputa4.txt";
 		args[1] = "2"; // Buffer pool size
 		args[2] = "statFile.txt";
 		String numBlocks = "4"; // Test file size
-		FileGenerator.generateFile(args[0]);
+		(new FileGenerator()).generateFile(args);
+		//call merge sort on file generate and give it a name
+		//check file
 		Mergesort.main(args);
-		assertTrue(fileChecker.checkFile(args[0]));
+		assertTrue(new CheckFile(args[0]));
 	}
 }

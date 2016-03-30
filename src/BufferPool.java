@@ -216,7 +216,7 @@ public class BufferPool {
 	 * @param file the file to be taken in
 	 * @throws IOException 
 	 */
-	public void stats(RandomAccessFile file) throws IOException
+	public void stats(String s, RandomAccessFile file, long x) throws IOException
 	{
 		file.writeChars("Cache hits: " + hits + "\n");
 		file.writeChars("Disk reads: " + reads + "\n");
