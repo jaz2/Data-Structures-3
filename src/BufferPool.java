@@ -114,7 +114,7 @@ public class BufferPool {
 			Buffer b = new Buffer(f, i, 4096);
 			f.read(b.data);
 			System.arraycopy(bytes, 0, b.data, posInBlock, numBytesToWrite);
-			blox[i].dbit = true;
+			b.dbit = true;
 			flush(blox[blox.length - 1]);		
 			for (int j = i; j > 0; j--)
 			{
