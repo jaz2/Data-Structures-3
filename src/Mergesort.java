@@ -74,7 +74,7 @@ public class Mergesort {
 			
 			RandomAccessFile st = new RandomAccessFile(args[2], "rw");
 			st.writeChars(args[0] + "\n");
-			bp.stats(st);
+			bp.stats(args[0], st, time);
 			st.writeChars(time + "\n");
 			f.close();
 			tem.close();
