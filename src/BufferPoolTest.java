@@ -49,7 +49,7 @@ public class BufferPoolTest extends TestCase {
 		bp.write(file, 4, 1000, b);
 		System.out.println(b.toString());
 		bp.read(file, 4, 1000, bye);
-		System.out.println(file.toString());
+		System.out.println(file.readUTF());
 		System.out.println(bye.toString());
 		assertTrue(b.equals(bye));
 	}
