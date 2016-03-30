@@ -145,7 +145,7 @@ public class BufferPool {
 		{
 			i++;
 		}
-		if (blox[i] != null && blockN == blox[i].block)
+		if (i != blox.length && blox[i] != null)
 		{ //send back to merge sort
 			System.arraycopy(blox[i].data, posInBlock, bytes, 0, numBytesRead);
 			Buffer tem = blox[i];
