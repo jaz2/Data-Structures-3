@@ -56,11 +56,14 @@ public class Mergesort {
 		{
 			System.out.println("Hello, World");
 		}
-		RandomAccessFile tem = new RandomAccessFile("temp", "rw");
-		RandomAccessFile f = new RandomAccessFile(args[1], "rw");
-		bp = new BufferPool(Integer.parseInt(args[2]));
+		else 
+		{
+			RandomAccessFile tem = new RandomAccessFile("temp", "rw");
+			RandomAccessFile f = new RandomAccessFile(args[1], "rw");
+			bp = new BufferPool(Integer.parseInt(args[2]));
 
-		sort(f, tem, 0, (int)f.length() / 4); //fix
+			sort(f, tem, 0, (int)f.length() / 4); //fix
+		}
 	}
 
 	/**

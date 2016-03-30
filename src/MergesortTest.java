@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 import student.TestCase;
 
 /**
@@ -15,10 +17,10 @@ public class MergesortTest
 		// no op
 	}
 	
-	public void testInit() {
+	public void testInit() throws IOException {
 		Mergesort merge = new Mergesort();
 		assertNotNull(merge);
-		//Mergesort.main(null); TODO fix this
+		Mergesort.main(null);
 		assertFuzzyEquals("Hello, World", systemOut().getHistory());
 	}
 }
