@@ -23,7 +23,7 @@ public class BufferPool {
 	// each block is 4096 bytes
 
 	//only writes to disk when something is changed and is flushed back (LRU)
-	private class Buffer {
+	public class Buffer {
 
 		/**
 		 * The array of data in buffer
