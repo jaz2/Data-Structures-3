@@ -43,9 +43,12 @@ public class BufferPoolTest extends TestCase {
 		RandomAccessFile file = new RandomAccessFile("something.txt", "rw");
 		byte[] bye = new byte[4];
 		byte[] size = "Hello world".getBytes();
+		byte[] b = {3, 2, 61, 2};
 		file.write(size);
 		BufferPool bp = new BufferPool(10);
-		buf.read(file, 4, 0, bye);
+		bp.write(file, 4, 1000, b);
+		bp.read(file, 4, 1000, bye);
+		assertTrue(b.equals(bye));
 	}
 	
 	/**

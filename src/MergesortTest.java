@@ -49,9 +49,10 @@ extends TestCase {
 		args[1] = "2"; // Buffer pool size
 		args[2] = "statFile.txt";
 		String numBlocks = "4"; // Test file size
-		" a"
+		//" a"
 		(new FileGenerator()).generateFile(args);
 		//call merge sort on file generate and give it a name
+		Mergesort.sort((new FileGenerator()).generateFile(args), temp, 0, right);
 		//check file
 		Mergesort.main(args);
 		assertTrue(new CheckFile(args[0]));
