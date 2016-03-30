@@ -18,14 +18,15 @@ public class BufferPoolTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-	}
-
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}//to randomaccessfile write something and then flush it 
+	} //to randomaccessfile write something and then flush it 
 	//make sure it's there
 	//give buffer pool at least 1 buffer
 
 	//do write TESTS!!!!!
+	/**
+	 * Tests the simple case of writing 
+	 */
+	@Test
+	public void testWriteYe()
+	{}
 }
