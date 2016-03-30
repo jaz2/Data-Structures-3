@@ -23,7 +23,7 @@ public class BufferPool {
 	// each block is 4096 bytes
 
 	//only writes to disk when something is changed and is flushed back (LRU)
-	public class Buffer {
+	private class Buffer {
 
 		/**
 		 * The array of data in buffer
@@ -42,6 +42,12 @@ public class BufferPool {
 		 */
 		public boolean dbit;
 
+		/**
+		 * The buffer constructor 
+		 * @param fil the file 
+		 * @param num the number of blocks
+		 * @param size the size of the file
+		 */
 		public Buffer(RandomAccessFile fil, int num, int size)
 		{
 			data = new byte[size];
