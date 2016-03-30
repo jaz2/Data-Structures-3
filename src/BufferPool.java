@@ -97,11 +97,12 @@ public class BufferPool {
 		int blockN = bytePos / 4096;
 		int posInBlock = bytePos % 4096;
 		int i = 0;
-		while (blockN != blox[i].block && i < blox.length && f.equals(blox[i].file))
+		while (blox[i] != null && blockN != blox[i].block 
+				&& i < blox.length && f.equals(blox[i].file))
 		{
 			i++;
 		}
-		if (blockN == blox[i].block)
+		if (blox[i] != null && blockN == blox[i].block)
 		{
 			System.arraycopy(bytes, 0, blox[i].data, posInBlock, numBytesToWrite);
 			blox[i].dbit = true;
@@ -139,11 +140,12 @@ public class BufferPool {
 		int blockN = bytePos / 4096; //block
 		int posInBlock = bytePos % 4096; //pos in block
 		int i = 0;
-		while (blockN != blox[i].block && i < blox.length && f.equals(blox[i].file))
+		while (blox[i] != null && blockN != blox[i].block 
+				&& i < blox.length && f.equals(blox[i].file))
 		{
 			i++;
 		}
-		if (blockN == blox[i].block)
+		if (blox[i] != null && blockN == blox[i].block)
 		{ //send back to merge sort
 			System.arraycopy(blox[i].data, posInBlock, bytes, 0, numBytesRead);
 			Buffer tem = blox[i];
@@ -175,7 +177,7 @@ public class BufferPool {
 	 */
 	public void flush(Buffer bu) throws IOException
 	{
-		if (bu.dbit == true)
+		if (bu != null && bu.dbit == true)
 		{
 			bu.file.seek(bu.block * 4096);
 			bu.file.write(bu.data);

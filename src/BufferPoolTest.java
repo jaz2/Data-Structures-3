@@ -17,11 +17,14 @@ import org.junit.Test;
  */
 public class BufferPoolTest {
 
+	public BufferPool buf;
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
+		buf = new BufferPool(3);
 	} //to randomaccessfile write something and then flush it 
 	//make sure it's there
 	//give buffer pool at least 1 buffer
@@ -35,9 +38,33 @@ public class BufferPoolTest {
 	public void testWriteYe() throws IOException
 	{		
 		RandomAccessFile file = new RandomAccessFile("something.txt", "rw");
-		byte[] size = "Come world as you are".getBytes();
+		byte[] bye = new byte[4];
+		byte[] size = "Hello world".getBytes();
 		file.write(size);
 		BufferPool bp = new BufferPool(10);
-		bp.Buffer b = new BufferPool.Buffer(file, 0, size.length);
+		BufferPool.Buffer b = BufferPool.Buffer(file, 0, size.length);
+	}
+	
+	/**
+	 * tests read method
+	 * @throws IOException
+	 */
+	public void testRead() throws IOException
+	{
+		RandomAccessFile f = new RandomAccessFile("file", "rw");
+		byte bytes[] = new byte[4];
+		buf.read(f, 4, 0, bytes);
+		//System.out.println(buf.blocks[0].data);
+		//[B@169646d3
+		assertTrue(bytes.length == 4);
+		byte b[] = {(byte)12, (byte)9, (byte)3, (byte)8};
+		buf.write(f, 4, 0, b);
+		buf.write(f, 4, 5000, b);
+		buf.write(f, 4, 10000, b);
+		buf.read(f, 4, 0, bytes);
+		buf.read(f, 4, 5000, bytes);
+		buf.read(f, 4, 20000, bytes);
+	
+	
 	}
 }
