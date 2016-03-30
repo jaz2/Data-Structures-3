@@ -1,3 +1,5 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
@@ -218,9 +220,12 @@ public class BufferPool {
 	 */
 	public void stats(String s, RandomAccessFile file, long x) throws IOException
 	{
-		file.writeChars("Cache hits: " + hits + "\n");
-		file.writeChars("Disk reads: " + reads + "\n");
-		file.writeChars("Disk writes: " + writes + "\n");
+		FileWriter fw = new FileWriter(file);
+		BufferedWriter w = new BufferedWriter(fw);
+		w.write(s);
+		w.write("Cache hits: " + hits + "\n");
+		w.write("Disk reads: " + reads + "\n");
+		w.write("Disk writes: " + writes + "\n");
 	}
 	
 }
