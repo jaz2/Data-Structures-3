@@ -47,7 +47,9 @@ public class BufferPoolTest extends TestCase {
 		file.write(size);
 		BufferPool bp = new BufferPool(10);
 		bp.write(file, 4, 1000, b);
+		System.out.println(b);
 		bp.read(file, 4, 1000, bye);
+		System.out.println(bye);
 		assertTrue(b.equals(bye));
 	}
 	
