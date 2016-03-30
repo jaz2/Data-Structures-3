@@ -59,16 +59,16 @@ public class Mergesort {
 		else 
 		{
 			RandomAccessFile tem = new RandomAccessFile("temp", "rw");
-			RandomAccessFile f = new RandomAccessFile(args[1], "rw");
-			bp = new BufferPool(Integer.parseInt(args[2]));
+			RandomAccessFile f = new RandomAccessFile(args[0], "rw");
+			bp = new BufferPool(Integer.parseInt(args[1]));
 
 			long start = System.currentTimeMillis();
 			sort(f, tem, 0, (int)f.length() / 4); 
 			long end = System.currentTimeMillis();
 			long time = end - start;
 			
-			RandomAccessFile st = new RandomAccessFile(args[3], "rw");
-			st.writeChars(args[1] + "\n");
+			RandomAccessFile st = new RandomAccessFile(args[2], "rw");
+			st.writeChars(args[0] + "\n");
 			bp.stats(st);
 			st.writeChars(time + "\n");
 		}

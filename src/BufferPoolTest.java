@@ -6,6 +6,8 @@ import java.io.RandomAccessFile;
 import java.util.Arrays;
 
 import org.junit.Before;
+import org.junit.Test;
+
 import student.TestCase;
 
 /**
@@ -50,6 +52,7 @@ public class BufferPoolTest extends TestCase {
 	 * tests read method
 	 * @throws IOException
 	 */
+	@Test
 	public void testRead() throws IOException
 	{
 		RandomAccessFile f = new RandomAccessFile("file", "rw");

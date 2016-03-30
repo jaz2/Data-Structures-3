@@ -1,5 +1,7 @@
 import java.io.IOException;
 
+import org.junit.Test;
+
 import student.TestCase;
 
 /**
@@ -21,6 +23,7 @@ public class MergesortTest
 	 * Tests when null
 	 * @throws IOException
 	 */
+	@Test
 	public void testInit() throws IOException {
 		Mergesort merge = new Mergesort();
 		assertNotNull(merge);
@@ -28,5 +31,10 @@ public class MergesortTest
 		assertFuzzyEquals("Hello, World", systemOut().getHistory());
 	}
 	
-	public void 
+	/**
+	 * First case of Merge sort
+	 */
+	@Test
+	public void testMerge1()
+	{}
 }
