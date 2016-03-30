@@ -218,14 +218,16 @@ public class BufferPool {
 	 * @param file the file to be taken in
 	 * @throws IOException 
 	 */
-	public void stats(String s, RandomAccessFile file, long x) throws IOException
+	public void stats(String s, long x) throws IOException
 	{
-		FileWriter fw = new FileWriter(file);
+		FileWriter fw = new FileWriter(s);
 		BufferedWriter w = new BufferedWriter(fw);
 		w.write(s);
 		w.write("Cache hits: " + hits + "\n");
 		w.write("Disk reads: " + reads + "\n");
 		w.write("Disk writes: " + writes + "\n");
+		w.write("Time to sort: " + x + "\n");
+		w.close();
 	}
 	
 }

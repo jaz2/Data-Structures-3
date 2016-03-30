@@ -70,15 +70,11 @@ public class Mergesort {
 			for(int i = 0; i < bp.blox.length; i++)
 			{
 				bp.flush(bp.blox[i]);
-			}
-			
-			RandomAccessFile st = new RandomAccessFile(args[2], "rw");
-			st.writeChars(args[0] + "\n");
-			bp.stats(args[0], st, time);
-			st.writeChars(time + "\n");
+			}			
+			//RandomAccessFile st = new RandomAccessFile(args[2], "rw");
+			bp.stats(args[2], time);
 			f.close();
 			tem.close();
-			st.close();
 		}
 	}
 
