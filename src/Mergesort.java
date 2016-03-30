@@ -4,6 +4,7 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 
 import BufferPool.Buffer;
+import student.web.internal.TemplateManager.Template;
 
 
 /**
@@ -78,6 +79,9 @@ public class Mergesort {
 			st.writeChars(args[0] + "\n");
 			bp.stats(st);
 			st.writeChars(time + "\n");
+			f.close();
+			tem.close();
+			st.close();
 		}
 	}
 
