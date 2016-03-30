@@ -42,6 +42,7 @@ extends TestCase {
 	 * Tests the stat file
 	 */
 	@Test
+	public void testStat
 	{
 		String[] args = new String[3];
 		args[0] = "inputa4.txt";

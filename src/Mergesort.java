@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 
+import BufferPool.Buffer;
+
 
 /**
  * { your description of the project here }
@@ -66,6 +68,11 @@ public class Mergesort {
 			sort(f, tem, 0, (int)f.length() / 4); 
 			long end = System.currentTimeMillis();
 			long time = end - start;
+			
+			for(int i = 0; i < bp.blox.length; i++)
+			{
+				bp.flush(bp.blox[i]);
+			}
 			
 			RandomAccessFile st = new RandomAccessFile(args[2], "rw");
 			st.writeChars(args[0] + "\n");
