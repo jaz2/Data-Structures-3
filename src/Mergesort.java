@@ -52,14 +52,17 @@ public class Mergesort {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException {
-		System.out.println("Hello, World");
+		if (args == null)
+		{
+			System.out.println("Hello, World");
+		}
 		RandomAccessFile tem = new RandomAccessFile("temp", "rw");
 		RandomAccessFile f = new RandomAccessFile(args[1], "rw");
 		bp = new BufferPool(Integer.parseInt(args[2]));
 
 		sort(f, tem, 0, (int)f.length() / 4); //fix
 	}
-	
+
 	/**
 	 * The sort method
 	 * @param A original file
@@ -103,10 +106,10 @@ public class Mergesort {
 			{
 				bp.read(temp, 4, i1 * 4, dat);
 				short a1 = ByteBuffer.wrap(dat).getShort();
-				
+
 				bp.read(temp, 4, i2 * 4, dat);
 				short a2 = ByteBuffer.wrap(dat).getShort();
-				
+
 				if (a1 <= a2 /*temp[i1].compareTo(temp[i2]) <= 0*/)  
 				{ // Get smaller value
 					//A[curr] = temp[i1++];
