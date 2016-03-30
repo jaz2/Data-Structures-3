@@ -17,10 +17,16 @@ public class MergesortTest
 		// no op
 	}
 	
+	/**
+	 * Tests when null
+	 * @throws IOException
+	 */
 	public void testInit() throws IOException {
 		Mergesort merge = new Mergesort();
 		assertNotNull(merge);
 		Mergesort.main(null);
 		assertFuzzyEquals("Hello, World", systemOut().getHistory());
 	}
+	
+	public void 
 }

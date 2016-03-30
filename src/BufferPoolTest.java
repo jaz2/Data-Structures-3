@@ -6,7 +6,7 @@ import java.io.RandomAccessFile;
 import java.util.Arrays;
 
 import org.junit.Before;
-import org.junit.Test;
+import student.TestCase;
 
 /**
  * 
@@ -16,7 +16,7 @@ import org.junit.Test;
  * @author Jazmine Zurita and Jessica McCready
  * @version March 22 2016
  */
-public class BufferPoolTest {
+public class BufferPoolTest extends TestCase {
 
 	public BufferPool buf;
 	
