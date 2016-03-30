@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -42,7 +43,7 @@ public class BufferPoolTest {
 		byte[] size = "Hello world".getBytes();
 		file.write(size);
 		BufferPool bp = new BufferPool(10);
-		BufferPool.Buffer b = BufferPool.Buffer(file, 0, size.length);
+		buf.read(file, 4, 0, bye);
 	}
 	
 	/**
@@ -62,9 +63,8 @@ public class BufferPoolTest {
 		buf.write(f, 4, 5000, b);
 		buf.write(f, 4, 10000, b);
 		buf.read(f, 4, 0, bytes);
+		//assert true Arrays.equals  make sure two arrays have same thing
 		buf.read(f, 4, 5000, bytes);
-		buf.read(f, 4, 20000, bytes);
-	
-	
+		buf.read(f, 4, 20000, bytes);	
 	}
 }

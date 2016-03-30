@@ -1,6 +1,8 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+
 
 /**
  * { your description of the project here }
@@ -55,10 +57,18 @@ public class Mergesort {
 		RandomAccessFile f = new RandomAccessFile(args[1], "rw");
 		bp = new BufferPool(Integer.parseInt(args[2]));
 
-		sort(f, tem, 0, (int)f.length() / 4096);
+		sort(f, tem, 0, (int)f.length() / 4); //fix
 	}
-
-	public static void sort(RandomAccessFile A, RandomAccessFile temp, int left, int right)
+	
+	/**
+	 * The sort method
+	 * @param A original file
+	 * @param temp the temp file
+	 * @param left the original start of file
+	 * @param right end of file
+	 * @throws IOException
+	 */
+	public static void sort(RandomAccessFile A, RandomAccessFile temp, int left, int right) throws IOException
 	{
 		byte[] dat = new byte[4];
 		if (left == right) return;         // List has one record
@@ -68,8 +78,8 @@ public class Mergesort {
 		for (int i = left; i <= right; i++)    // Copy subarray to temp
 		{
 			//temp[i] = A[i];
-			bp.read(A, 4, i * 4096, dat); //ask eric
-			bp.write(temp, 4, i * 4096, dat);
+			bp.read(A, 4, i * 4, dat);
+			bp.write(temp, 4, i * 4, dat);
 		}
 		// Do the merge operation back to A
 		int i1 = left;
@@ -77,19 +87,40 @@ public class Mergesort {
 		for (int curr = left; curr <= right; curr++) {
 			if (i1 == mid + 1)     
 			{ // Left sublist exhausted
-				A[curr] = temp[i2++];
+				//A[curr] = temp[i2++];
+				bp.read(temp, 4, i2, dat);
+				bp.write(A, 4, curr, dat);
+				i2++;
 			}
 			else if (i2 > right)             
 			{ // Right sublist exhausted
-				A[curr] = temp[i1++];
+				//A[curr] = temp[i1++];
+				bp.read(temp, 4, i1, dat);
+				bp.write(A, 4, curr, dat);
+				i1++;
 			}
-			else if (temp[i1].compareTo(temp[i2]) <= 0)  
-			{ // Get smaller value
-				A[curr] = temp[i1++];
-			}
-			else
+			else 
 			{
-				A[curr] = temp[i2++];
+				bp.read(temp, 4, i1 * 4, dat);
+				short a1 = ByteBuffer.wrap(dat).getShort();
+				
+				bp.read(temp, 4, i2 * 4, dat);
+				short a2 = ByteBuffer.wrap(dat).getShort();
+				
+				if (a1 <= a2 /*temp[i1].compareTo(temp[i2]) <= 0*/)  
+				{ // Get smaller value
+					//A[curr] = temp[i1++];
+					bp.read(temp, 4, i1, dat);
+					bp.write(A, 4, curr, dat);
+					i1++;
+				}
+				else
+				{
+					//A[curr] = temp[i2++];
+					bp.read(temp, 4, i2, dat);
+					bp.write(A, 4, curr, dat);
+					i2++;
+				}
 			}
 			//merge sort first half 
 			//merge sort second half
@@ -98,13 +129,6 @@ public class Mergesort {
 			// compareTo and increment min 
 			// pointer 
 			//place min value in file
-
-			//			List mergesort(List inlist) {
-			//			  if (inlist.length() <= 1) return inlist;;
-			//			  List L1 = half of the items from inlist;
-			//			  List L2 = other half of the items from inlist;
-			//			  return merge(mergesort(L1), mergesort(L2));
-			//			}
 		}
 	}
 }
