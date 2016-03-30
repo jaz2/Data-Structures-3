@@ -72,6 +72,21 @@ public class BufferPool {
 	 * Array holding the buffers
 	 */
 	public Buffer blox[]; //this will be the circular array
+	
+	/**
+	 * for stats
+	 */
+	public int hits;
+	
+	/**
+	 * Times read in buffer
+	 */
+	public int reads;
+	
+	/**
+	 * Times written in buffer
+	 */
+	public int writes;
 
 	/**
 	 * Constructor for the bufferPool
@@ -79,6 +94,9 @@ public class BufferPool {
 	public BufferPool(int numOfBlocks)
 	{ //make an array storing buffers
 		blox = new Buffer[numOfBlocks];
+		hits = 0;
+		reads = 0;
+		writes = 0;
 	}
 
 	//first thing to do is take info and put it into buffers
@@ -106,6 +124,7 @@ public class BufferPool {
 		{
 			System.arraycopy(bytes, 0, blox[i].data, posInBlock, numBytesToWrite);
 			blox[i].dbit = true;
+			hits++;
 			//send back to merge sort
 		}
 		else 
@@ -121,6 +140,7 @@ public class BufferPool {
 				blox[j] = blox[j - 1];
 			}
 			blox[0] = b;
+			writes++;
 			//read from file, place into buffer and send that back
 		}
 	} 
@@ -154,6 +174,7 @@ public class BufferPool {
 				blox[j] = blox[j - 1];
 			}
 			blox[0] = tem;
+			hits++;
 		}
 		else 
 		{ //read from file, place into buffer and send that back
@@ -167,6 +188,7 @@ public class BufferPool {
 				blox[k] = blox[k - 1];
 			}
 			blox[0] = b;
+			reads++;
 		}
 	} //for each buffer flush if it's dirty
 
@@ -182,10 +204,23 @@ public class BufferPool {
 			bu.file.seek(bu.block * 4096);
 			bu.file.write(bu.data);
 			bu.dbit = false;
+			writes++;
 		}
 	}
 
-	//make a write stats method here
-	//want to keep adding to the stat file
-	//make variables to count the number of read and writes
+	/**
+	 * make a write stats method here
+	 * want to keep adding to the stat file
+	 * make variables to count the number of read and writes
+	 * 
+	 * @param file the file to be taken in
+	 * @throws IOException 
+	 */
+	public void stats(RandomAccessFile file) throws IOException
+	{
+		file.writeChars("Cache hits: " + hits + "\n");
+		file.writeChars("Disk reads: " + reads + "\n");
+		file.writeChars("Disk writes: " + writes + "\n");
+	}
+	
 }
