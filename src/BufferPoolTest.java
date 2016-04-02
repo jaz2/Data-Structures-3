@@ -62,8 +62,6 @@ public class BufferPoolTest extends TestCase {
 	{
 		RandomAccessFile f = new RandomAccessFile("file", "rw");
 		byte bytes[] = new byte[4];
-		//buf.read(f, 4, 0, bytes);
-		assertTrue(bytes.length == 4);
 		byte b[] = {(byte)12, (byte)9, (byte)3, (byte)8};
 		buf.write(f, 4, 0, b);
 		buf.write(f, 4, 5000, b);
@@ -78,8 +76,12 @@ public class BufferPoolTest extends TestCase {
 		}	
 		buf = new BufferPool(3);
 		assertFalse(Arrays.equals(b, bytes));
-		assertEquals(bytes.length, 0);
-		buf.read(f, 4, 3000, bytes);
-		
+		byte a[] = {14, 99, 5, 8, 10};
+		buf.write(f, 4, 0, a);
+		buf.write(f, 4, 5000, a);
+		buf.write(f, 4, 10000, a);
+		buf.write(f, 4, 0, b);
+		byte i[] = {12, 99, 5};
+		assertEquals(a, i);
 	}
 }
