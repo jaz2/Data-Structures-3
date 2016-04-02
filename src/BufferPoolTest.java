@@ -65,7 +65,7 @@ public class BufferPoolTest extends TestCase {
 		byte b[] = {(byte)12, (byte)9, (byte)3, (byte)8};
 		buf.write(f, 4, 0, b);
 		buf.write(f, 4, 5000, b);
-		buf.write(f, 4, 90000, b);
+		buf.write(f, 4, 9000, b);
 		buf.read(f, 4, 0, bytes);
 		assertTrue(Arrays.equals(b, bytes));
 		buf.read(f, 4, 5000, bytes);
@@ -83,12 +83,14 @@ public class BufferPoolTest extends TestCase {
 	/**
 	 * Checks if the block has the data equal
 	 *  to the array 
+	 * @throws IOException 
 	 */
 	@Test
-	public void testReadBlock()
+	public void testReadBlock() throws IOException
 	{
 		RandomAccessFile f = new RandomAccessFile("file", "rw");
 		byte bytes[] = new byte[4];
+		byte b[] = {12, 9, 3, 8};
 		byte a[] = {14, 99, 5, 8};
 		buf.write(f, 4, 0, a);
 		buf.write(f, 4, 5000, a);
