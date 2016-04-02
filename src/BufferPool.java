@@ -163,7 +163,7 @@ public class BufferPool {
 		int posInBlock = bytePos % 4096; //pos in block
 		int i = 0;
 		while (i < blox.length && blox[i] != null 
-				&& blockN != blox[i].block &&  f.equals(blox[i].file))
+				&& blockN != blox[i].block && f.equals(blox[i].file))
 		{
 			i++;
 		}

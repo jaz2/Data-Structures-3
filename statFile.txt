@@ -1,4 +1,5 @@
-statFile.txtCache hits: 222387
+statFile.txt
+Cache hits: 222799
 Disk reads: 16399
 Disk writes: 49191
-Time to sort: 316
+Time to sort: 262
