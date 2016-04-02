@@ -100,6 +100,6 @@ public class BufferPoolTest extends TestCase {
 		assertTrue(Arrays.equals(b, bytes));
 		buf.read(f, 4, 5000, bytes);
 		assertTrue(Arrays.equals(a, bytes));
-		assertTrue(Arrays.equals(bytes, buf.blox[0].data));
+		assertTrue(Arrays.equals(bytes, buf.blox[1].data));
 	}
 }
