@@ -122,7 +122,7 @@ public class BufferPool {
 		{
 			i++;
 		}
-		if (blox[i] != null && blockN == blox[i].block)
+		if (i != blox.length && blox[i] != null)
 		{
 			System.arraycopy(bytes, 0, blox[i].data, posInBlock, numBytesToWrite);
 			blox[i].dbit = true;
