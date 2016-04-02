@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.RandomAccessFile;
 
 import org.junit.Test;
 
@@ -40,9 +41,10 @@ extends TestCase {
 
 	/**
 	 * Tests the stat file
+	 * @throws Exception 
 	 */
 	@Test
-	public void testStat()
+	public void testStat() throws Exception
 	{
 		String[] args = new String[3];
 		args[0] = "inputa4.txt";
@@ -50,11 +52,21 @@ extends TestCase {
 		args[2] = "statFile.txt";
 		String numBlocks = "4"; // Test file size
 		//" a"
-		(new FileGenerator()).generateFile(args);
+		FileGenerator f = new FileGenerator();
+		CheckFile c = new CheckFile();
+		String[] args2 = new String[3];
+		args[0] = "a";
+		args[1] = args[0]; // Buffer pool size
+		args[2] = numBlocks;
+		f.generateFile(args2);
+		
+		//(new FileGenerator()).generateFile(args);
+		RandomAccessFile temp = new RandomAccessFile("test.txt", "rw");
 		//call merge sort on file generate and give it a name
-		Mergesort.sort((new FileGenerator()).generateFile(args), temp, 0, right);
+		//Mergesort.sort(f.generateFile(args), temp, 0, );
 		//check file
 		Mergesort.main(args);
-		assertTrue(new CheckFile(args[0]));
+		
+		assertTrue(c.checkFile(args[0]));
 	}
 }

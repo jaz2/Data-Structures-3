@@ -56,7 +56,7 @@ public class FileGenerator
             new DataOutputStream(new BufferedOutputStream(new FileOutputStream(
                 args[1])));
 
-        if (args[0].charAt(1) == 'b')
+        if (args[0].charAt(0) == 'b')
         { // Write out random numbers
             for (int i = 0; i < filesize; i++)
             {
