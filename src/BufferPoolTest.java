@@ -69,9 +69,16 @@ public class BufferPoolTest extends TestCase {
 		buf.write(f, 4, 5000, b);
 		buf.write(f, 4, 10000, b);
 		buf.read(f, 4, 0, bytes);
-		//assert true Arrays.equals  make sure two arrays have same thing
 		assertTrue(Arrays.equals(b, bytes));
 		buf.read(f, 4, 5000, bytes);
-		buf.read(f, 4, 20000, bytes);	
+		buf.read(f, 4, 20000, bytes);
+		for(int i = 0; i < buf.blox.length; i++)
+		{
+			buf.flush(buf.blox[i]);
+		}	
+		buf = new BufferPool(3);
+		assertEquals(f.length(), 0);
+		buf.read(f, 4, 3000, bytes);
+		
 	}
 }
