@@ -48,8 +48,6 @@ public class BufferPoolTest extends TestCase {
 		BufferPool bp = new BufferPool(10);
 		bp.write(file, 4, 0, b);		
 		bp.read(file, 4, 0, bye);
-		System.out.println(b.toString());
-		System.out.println(bye.toString());
 		assertTrue(Arrays.equals(b, bye));
 	}
 	
