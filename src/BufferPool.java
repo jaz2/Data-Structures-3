@@ -137,7 +137,7 @@ public class BufferPool {
 			System.arraycopy(bytes, 0, b.data, posInBlock, numBytesToWrite);
 			b.dbit = true;
 			flush(blox[blox.length - 1]);		
-			for (int j = i; j > 0; j--)
+			for (int j = blox.length - 1; j > 0; j--)
 			{
 				blox[j] = blox[j - 1];
 			}
