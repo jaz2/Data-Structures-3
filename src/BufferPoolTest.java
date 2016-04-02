@@ -76,7 +76,7 @@ public class BufferPoolTest extends TestCase {
 		}	
 		buf = new BufferPool(3);
 		assertFalse(Arrays.equals(b, bytes));
-		byte a[] = {14, 99, 5, 8, 10};
+		byte a[] = {14, 99, 5, 8};
 		buf.write(f, 4, 0, a);
 		buf.write(f, 4, 5000, a);
 		buf.write(f, 4, 10000, a);
