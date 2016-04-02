@@ -65,7 +65,7 @@ public class BufferPoolTest extends TestCase {
 		byte b[] = {(byte)12, (byte)9, (byte)3, (byte)8};
 		buf.write(f, 4, 0, b);
 		buf.write(f, 4, 5000, b);
-		buf.write(f, 4, 10000, b);
+		buf.write(f, 4, 90000, b);
 		buf.read(f, 4, 0, bytes);
 		assertTrue(Arrays.equals(b, bytes));
 		buf.read(f, 4, 5000, bytes);
