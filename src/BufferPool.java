@@ -186,7 +186,7 @@ public class BufferPool {
 			flush(blox[blox.length - 1]);
 			for (int k = blox.length - 1; k > 0; k--)
 			{
-				blox[k] = blox[k - 1];
+				blox[k].data = blox[k - 1].data;
 			}
 			blox[0] = b;
 			reads++;
