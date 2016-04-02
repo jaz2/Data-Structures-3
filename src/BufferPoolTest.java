@@ -74,6 +74,8 @@ public class BufferPoolTest extends TestCase {
 		{
 			buf.flush(buf.blox[i]);
 		}	
+		
+		
 		buf = new BufferPool(3);
 		assertFalse(Arrays.equals(b, bytes));
 		byte a[] = {14, 99, 5, 8};
