@@ -107,15 +107,15 @@ public class Mergesort {
 			if (i1 == mid + 1)     
 			{ // Left sublist exhausted
 				//A[curr] = temp[i2++];
-				bp.read(temp, 4, i2, dat);
-				bp.write(A, 4, curr, dat);
+				bp.read(temp, 4, i2 * 4, dat);
+				bp.write(A, 4, curr * 4, dat);
 				i2++;
 			}
 			else if (i2 > right)             
 			{ // Right sublist exhausted
 				//A[curr] = temp[i1++];
-				bp.read(temp, 4, i1, dat);
-				bp.write(A, 4, curr, dat);
+				bp.read(temp, 4, i1 * 4, dat);
+				bp.write(A, 4, curr * 4, dat);
 				i1++;
 			}
 			else 
@@ -129,15 +129,15 @@ public class Mergesort {
 				if (a1 <= a2 /*temp[i1].compareTo(temp[i2]) <= 0*/)  
 				{ // Get smaller value
 					//A[curr] = temp[i1++];
-					bp.read(temp, 4, i1, dat);
-					bp.write(A, 4, curr, dat);
+					bp.read(temp, 4, i1 * 4, dat);
+					bp.write(A, 4, curr * 4, dat);
 					i1++;
 				}
 				else
 				{
 					//A[curr] = temp[i2++];
-					bp.read(temp, 4, i2, dat);
-					bp.write(A, 4, curr, dat);
+					bp.read(temp, 4, i2 * 4, dat);
+					bp.write(A, 4, curr * 4, dat);
 					i2++;
 				}
 			}
