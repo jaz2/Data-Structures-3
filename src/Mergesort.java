@@ -76,7 +76,6 @@ public class Mergesort {
 			bp.stats(args[2], time);
 			f.close();
 			tem.close();
-			System.out.println("HEEEEYYYY");
 		}
 	}
 
@@ -98,7 +97,6 @@ public class Mergesort {
 		for (int i = left; i <= right; i++)    // Copy subarray to temp
 		{
 			//temp[i] = A[i];
-			System.out.println("Let's see if this works");
 			bp.read(A, 4, i * 4, dat);
 			bp.write(temp, 4, i * 4, dat);
 		}

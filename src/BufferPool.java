@@ -172,7 +172,7 @@ public class BufferPool {
 			Buffer tem = blox[i];
 			for (int j = i; j > 0; j--)
 			{
-				blox[j].data = blox[j - 1].data;
+				blox[j] = blox[j - 1];
 			}
 			blox[0] = tem;
 			hits++;
@@ -186,7 +186,7 @@ public class BufferPool {
 			flush(blox[blox.length - 1]);
 			for (int k = blox.length - 1; k > 0; k--)
 			{
-				blox[k].data = blox[k - 1].data;
+				blox[k] = blox[k - 1];
 			}
 			blox[0] = b;
 			reads++;
