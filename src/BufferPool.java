@@ -143,7 +143,6 @@ public class BufferPool {
 			}
 			blox[0] = b;
 			writes++;
-			//read from file, place into buffer and send that back
 		}
 	} 
 
