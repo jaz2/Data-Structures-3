@@ -77,7 +77,7 @@ public class BufferPoolTest extends TestCase {
 			buf.flush(buf.blox[i]);
 		}	
 		buf = new BufferPool(3);
-		assertEquals(f.length(), 0);
+		assertFalse(Arrays.equals(b, bytes));
 		buf.read(f, 4, 3000, bytes);
 		
 	}
