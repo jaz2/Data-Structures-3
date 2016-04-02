@@ -74,10 +74,21 @@ public class BufferPoolTest extends TestCase {
 		{
 			buf.flush(buf.blox[i]);
 		}	
-		
-		
+				
 		buf = new BufferPool(3);
 		assertFalse(Arrays.equals(b, bytes));
+		//assertTrue(Arrays.equals(a, buf.blox[1].data));
+	}
+	
+	/**
+	 * Checks if the block has the data equal
+	 *  to the array 
+	 */
+	@Test
+	public void testReadBlock()
+	{
+		RandomAccessFile f = new RandomAccessFile("file", "rw");
+		byte bytes[] = new byte[4];
 		byte a[] = {14, 99, 5, 8};
 		buf.write(f, 4, 0, a);
 		buf.write(f, 4, 5000, a);
@@ -90,6 +101,5 @@ public class BufferPoolTest extends TestCase {
 		buf.read(f, 4, 5000, bytes);
 		assertTrue(Arrays.equals(a, bytes));
 		assertTrue(Arrays.equals(bytes, buf.blox[0].data));
-		//assertTrue(Arrays.equals(a, buf.blox[1].data));
 	}
 }
