@@ -67,7 +67,7 @@ public class FileGenerator
                 }
             }
         }
-        else if (args[0].charAt(1) == 'a')
+        else if (args[0].charAt(0) == 'a')
         { // Write out ASCII-readable values
             for (int i = 0; i < filesize; i++)
             {
