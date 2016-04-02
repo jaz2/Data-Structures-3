@@ -1,5 +1,5 @@
 statFile.txt
-Cache hits: 217477
+Cache hits: 218911
 Disk reads: 16399
 Disk writes: 49191
-Time to sort: 221
+Time to sort: 1262
