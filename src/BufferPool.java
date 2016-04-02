@@ -131,7 +131,7 @@ public class BufferPool {
 		}
 		else 
 		{
-			f.seek(bytePos);
+			f.seek(blockN * 4096);
 			Buffer b = new Buffer(f, i, 4096);
 			f.readFully(b.data);
 			System.arraycopy(bytes, 0, b.data, posInBlock, numBytesToWrite);
@@ -180,7 +180,7 @@ public class BufferPool {
 		}
 		else 
 		{ //read from file, place into buffer and send that back
-			f.seek(bytePos);
+			f.seek(blockN * 4096);
 			Buffer b = new Buffer(f, i, 4096);
 			f.readFully(b.data);
 			System.arraycopy(b.data, posInBlock, bytes, 0, numBytesRead);
