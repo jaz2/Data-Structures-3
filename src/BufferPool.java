@@ -187,7 +187,6 @@ public class BufferPool {
 			for (int j = blox.length - 1; j > 0; j--)
 			{
 				blox[j] = blox[j - 1];
-				System.out.println("Writing: " + blox[j]);
 			}
 			blox[0] = b;
 			writes++;
@@ -205,6 +204,7 @@ public class BufferPool {
 		{
 			bu.file.seek(bu.block * 4096);
 			bu.file.write(bu.data);
+			System.out.println("Writes: " + bu.data);
 			bu.dbit = false;
 			writes++;
 		}
