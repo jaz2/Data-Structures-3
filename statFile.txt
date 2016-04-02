@@ -1,0 +1,4 @@
+statFile.txtCache hits: 222387
+Disk reads: 16399
+Disk writes: 49191
+Time to sort: 316
