@@ -101,52 +101,6 @@ public class BufferPool {
 		writes = 0;
 	}
 
-	//first thing to do is take info and put it into buffers
-	/**
-	 * Writes over the buffer, or the file
-	 * if buffer does not contain it
-	 * @param file the file to access
-	 * @param numBytesToWrite the number of bytes (4)
-	 * @param bytePos position to start
-	 * @param bytes the array to write in
-	 * @throws IOException 
-	 */
-	public void write(RandomAccessFile f, int numBytesToWrite, int bytePos, byte[] bytes) throws IOException
-	{
-		//when you flush, reset the dirty bit to false
-		int blockN = bytePos / 4096;
-		int posInBlock = bytePos % 4096;
-		int i = 0;
-		while (i < blox.length && blox[i] != null 
-				&& blockN != blox[i].block &&  f.equals(blox[i].file))
-		{
-			i++;
-		}
-		if (i != blox.length && blox[i] != null)
-		{
-			System.arraycopy(bytes, 0, blox[i].data, posInBlock, numBytesToWrite);
-			blox[i].dbit = true;
-			hits++;
-			//send back to merge sort
-		}
-		else 
-		{
-			f.seek(blockN * 4096);
-			Buffer b = new Buffer(f, i, 4096);
-			f.read(b.data);
-			System.arraycopy(bytes, 0, b.data, posInBlock, numBytesToWrite);
-			b.dbit = true;
-			flush(blox[blox.length - 1]);		
-			for (int j = blox.length - 1; j > 0; j--)
-			{
-				blox[j] = blox[j - 1];
-			}
-			blox[0] = b;
-			writes++;
-		}
-	} 
-
-
 	/**
 	 * 
 	 * @param file the file to read
@@ -193,6 +147,53 @@ public class BufferPool {
 		}
 	} //for each buffer flush if it's dirty
 
+
+	//first thing to do is take info and put it into buffers
+	/**
+	 * Writes over the buffer, or the file
+	 * if buffer does not contain it
+	 * @param file the file to access
+	 * @param numBytesToWrite the number of bytes (4)
+	 * @param bytePos position to start
+	 * @param bytes the array to write in
+	 * @throws IOException 
+	 */
+	public void write(RandomAccessFile f, int numBytesToWrite, int bytePos, byte[] bytes) throws IOException
+	{
+		//when you flush, reset the dirty bit to false
+		int blockN = bytePos / 4096;
+		int posInBlock = bytePos % 4096;
+		int i = 0;
+		while (i < blox.length && blox[i] != null 
+				&& blockN != blox[i].block &&  f.equals(blox[i].file))
+		{
+			i++;
+		}
+		if (i != blox.length && blox[i] != null)
+		{
+			System.arraycopy(bytes, 0, blox[i].data, posInBlock, numBytesToWrite);
+			blox[i].dbit = true;
+			hits++;
+			//send back to merge sort
+		}
+		else 
+		{
+			f.seek(blockN * 4096);
+			Buffer b = new Buffer(f, i, 4096);
+			f.read(b.data);
+			System.arraycopy(bytes, 0, b.data, posInBlock, numBytesToWrite);
+			b.dbit = true;
+			flush(blox[blox.length - 1]);		
+			for (int j = blox.length - 1; j > 0; j--)
+			{
+				blox[j] = blox[j - 1];
+				System.out.println("Writing: " + blox[j]);
+			}
+			blox[0] = b;
+			writes++;
+		}
+	} 
+		
 	/**
 	 * Flushes 
 	 * @param bu the buffer to flush
