@@ -62,9 +62,7 @@ public class BufferPoolTest extends TestCase {
 	{
 		RandomAccessFile f = new RandomAccessFile("file", "rw");
 		byte bytes[] = new byte[4];
-		buf.read(f, 4, 0, bytes);
-		//System.out.println(buf.blocks[0].data);
-		//[B@169646d3
+		//buf.read(f, 4, 0, bytes);
 		assertTrue(bytes.length == 4);
 		byte b[] = {(byte)12, (byte)9, (byte)3, (byte)8};
 		buf.write(f, 4, 0, b);
@@ -72,6 +70,7 @@ public class BufferPoolTest extends TestCase {
 		buf.write(f, 4, 10000, b);
 		buf.read(f, 4, 0, bytes);
 		//assert true Arrays.equals  make sure two arrays have same thing
+		assertTrue(Arrays.equals(b, bytes));
 		buf.read(f, 4, 5000, bytes);
 		buf.read(f, 4, 20000, bytes);	
 	}
