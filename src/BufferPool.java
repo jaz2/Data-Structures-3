@@ -133,7 +133,7 @@ public class BufferPool {
 		{
 			f.seek(blockN * 4096);
 			Buffer b = new Buffer(f, i, 4096);
-			f.readFully(b.data);
+			f.read(b.data);
 			System.arraycopy(bytes, 0, b.data, posInBlock, numBytesToWrite);
 			b.dbit = true;
 			flush(blox[blox.length - 1]);		
@@ -181,7 +181,7 @@ public class BufferPool {
 		{ //read from file, place into buffer and send that back
 			f.seek(blockN * 4096);
 			Buffer b = new Buffer(f, i, 4096);
-			f.readFully(b.data);
+			f.read(b.data);
 			System.arraycopy(b.data, posInBlock, bytes, 0, numBytesRead);
 			flush(blox[blox.length - 1]);
 			for (int k = blox.length - 1; k > 0; k--)
