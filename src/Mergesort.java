@@ -60,7 +60,7 @@ public class Mergesort {
 		{
 			RandomAccessFile tem = new RandomAccessFile("temp", "rw");
 			System.out.println(args[0]);
-			//RandomAccessFile f = new RandomAccessFile(args[0], "rw");
+			RandomAccessFile f = new RandomAccessFile(args[0], "rw");
 			RandomAccessFile stat = new RandomAccessFile(args[2], "rw");
 			bp = new BufferPool(Integer.parseInt(args[1]));
 
@@ -74,7 +74,7 @@ public class Mergesort {
 				bp.flush(bp.blox[i]);
 			}			
 			//RandomAccessFile st = new RandomAccessFile(args[2], "rw");
-			bp.stats(args[2], time);
+			bp.stats(stat, time);
 			f.close();
 			tem.close();
 		}
