@@ -125,6 +125,8 @@ public class BufferPoolTest extends TestCase {
 		assertTrue(Arrays.equals(b, bytes));
 		
 		pool.write(f, 4, 10000, c);
+		
+		
 		pool.read(f, 4, 10000, bytes);
 		assertTrue(Arrays.equals(c, bytes));
 		
