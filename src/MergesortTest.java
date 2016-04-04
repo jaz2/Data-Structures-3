@@ -61,12 +61,12 @@ extends TestCase {
 		f.generateFile(args2);
 		
 		//(new FileGenerator()).generateFile(args);
-		//RandomAccessFile temp = new RandomAccessFile("test.txt", "rw");
-		//RandomAccessFile file = new RandomAccessFile(args[0], "rw");
+		RandomAccessFile temp = new RandomAccessFile("test.txt", "rw");
+		RandomAccessFile file = new RandomAccessFile(args[0], "rw");
 		//call merge sort on file generate and give it a name
-		//Mergesort.sort(file, temp, 0, (int)file.length()/ 4);
+		Mergesort.sort(file, temp, 0, (int)file.length()/ 4);
 		//check file
-		Mergesort.main(args);
+		//Mergesort.main(args);
 		
 		assertTrue(c.checkFile(args[0]));
 	}
