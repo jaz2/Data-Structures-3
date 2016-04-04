@@ -57,11 +57,11 @@ public class Mergesort {
 			System.out.println("Hello, World");
 		}
 		else 
-		{
-			RandomAccessFile tem = new RandomAccessFile("temp", "rw");
+		{			
 			System.out.println(args[0]);
 			RandomAccessFile f = new RandomAccessFile(args[0], "rw");
 			RandomAccessFile stat = new RandomAccessFile(args[2], "rw");
+			RandomAccessFile tem = new RandomAccessFile("temp", "rw");
 			bp = new BufferPool(Integer.parseInt(args[1]));
 
 			long start = System.currentTimeMillis();
