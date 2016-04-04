@@ -101,4 +101,20 @@ public class BufferPoolTest extends TestCase {
 		assertTrue(Arrays.equals(a, bytes));
 		//assertTrue(Arrays.equals(bytes, buf.blox[0].data));
 	}
+	
+	/**
+	 * Checks if LRU is working as it should
+	 * @throws IOException 
+	 */
+	@Test
+	public void testLRU() throws IOException
+	{
+		RandomAccessFile f = new RandomAccessFile("file", "rw");
+		byte bytes[] = new byte[4];
+		byte b[] = {12, 9, 3, 8};
+		byte a[] = {14, 99, 5, 8};
+		buf.write(f, 4, 0, a);
+		buf.read(f, 4, 0, bytes);
+		assertTrue(Arrays.equals(a, bytes));
+	}
 }
