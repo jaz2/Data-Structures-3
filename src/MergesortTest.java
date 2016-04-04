@@ -56,8 +56,8 @@ extends TestCase {
 		CheckFile c = new CheckFile();
 		String[] args2 = new String[3];
 		args2[0] = "-a";
-		args2[1] = args[0]; // Buffer pool size
-		args2[2] = numBlocks;
+		args2[1] = args[0]; 
+		args2[2] = args[1];
 		f.generateFile(args2);
 		
 		//(new FileGenerator()).generateFile(args);
