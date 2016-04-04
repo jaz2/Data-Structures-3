@@ -121,7 +121,7 @@ public class BufferPool {
 			i++;
 		}
 		if (i < blox.length && blox[i] != null 
-				&& blockN != blox[i].block &&  f.equals(blox[i].file))
+				&& blockN == blox[i].block &&  f.equals(blox[i].file))
 		{ //send back to merge sort
 			System.arraycopy(blox[i].data, posInBlock, bytes, 0, numBytesRead);
 			Buffer tem = blox[i];
@@ -166,7 +166,7 @@ public class BufferPool {
 		int posInBlock = bytePos % 4096;
 		int i = 0;
 		while (i < blox.length && blox[i] != null 
-				&& blockN != blox[i].block &&  f.equals(blox[i].file))
+				&& blockN == blox[i].block &&  f.equals(blox[i].file))
 		{
 			i++;
 		}
@@ -224,7 +224,7 @@ public class BufferPool {
 		//FileWriter fw = new FileWriter(s);
 		//BufferedWriter w = new BufferedWriter(fw);
 		//w.write(s);
-		s.writeChars("\nCache hits: " + hits + "\n");
+		s.writeChars("Cache hits: " + hits + "\n");
 		s.writeChars("Disk reads: " + reads + "\n");
 		s.writeChars("Disk writes: " + writes + "\n");
 		s.writeChars("Time to sort: " + x + "\n");
