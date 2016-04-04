@@ -111,10 +111,24 @@ public class BufferPoolTest extends TestCase {
 	{
 		RandomAccessFile f = new RandomAccessFile("file", "rw");
 		byte bytes[] = new byte[4];
-		byte b[] = {12, 9, 3, 8};
 		byte a[] = {14, 99, 5, 8};
-		buf.write(f, 4, 0, a);
-		buf.read(f, 4, 0, bytes);
+		byte b[] = {12, 9, 3, 8};
+		byte c[] = {42, 93, 36, 8};
+		BufferPool pool = new BufferPool(10);
+		pool.write(f, 4, 0, a);
+		pool.read(f, 4, 0, bytes);
+		assertTrue(Arrays.equals(a, bytes));
+		
+		pool.write(f, 4, 5000, b);
+		pool.read(f, 4, 5000, bytes);
+		assertTrue(Arrays.equals(b, bytes));
+		
+		pool.write(f, 4, 10000, c);
+		pool.read(f, 4, 10000, bytes);
+		assertTrue(Arrays.equals(c, bytes));
+		
+		pool.write(f, 4, 5000, a);
+		pool.read(f, 4, 5000, bytes);
 		assertTrue(Arrays.equals(a, bytes));
 	}
 }
