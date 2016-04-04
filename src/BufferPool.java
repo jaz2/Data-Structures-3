@@ -74,17 +74,17 @@ public class BufferPool {
 	 * Array holding the buffers
 	 */
 	public Buffer blox[]; //this will be the circular array
-	
+
 	/**
 	 * for stats
 	 */
 	public int hits;
-	
+
 	/**
 	 * Times read in buffer
 	 */
 	public int reads;
-	
+
 	/**
 	 * Times written in buffer
 	 */
@@ -115,13 +115,17 @@ public class BufferPool {
 		int blockN = bytePos / 4096; //block
 		int posInBlock = bytePos % 4096; //pos in block
 		int i = 0;
-		while (i < blox.length && blox[i] != null 
-				&& blockN != blox[i].block && f.equals(blox[i].file))
+		while (i < blox.length
+				&& blox[i] != null 
+				&& !(blockN == blox[i].block 
+				&& f.getFilePointer() == (blox[i].file.getFilePointer()))/*f.equals(blox[i].file)*/)
 		{
 			i++;
 		}
-		if (i < blox.length && blox[i] != null 
-				&& blockN == blox[i].block &&  f.equals(blox[i].file))
+		if (i < blox.length 
+				&& blox[i] != null 
+				&& (blockN == blox[i].block 
+				&& f.getFilePointer() == (blox[i].file.getFilePointer()))/*f.equals(blox[i].file)*/)
 		{ //send back to merge sort
 			System.arraycopy(blox[i].data, posInBlock, bytes, 0, numBytesRead);
 			Buffer tem = blox[i];
@@ -135,7 +139,7 @@ public class BufferPool {
 		else 
 		{ //read from file, place into buffer and send that back
 			f.seek(blockN * 4096);
-			Buffer b = new Buffer(f, i, 4096);
+			Buffer b = new Buffer(f, blockN, 4096);
 			f.read(b.data);
 			System.arraycopy(b.data, posInBlock, bytes, 0, numBytesRead);
 			flush(blox[blox.length - 1]);
@@ -144,7 +148,7 @@ public class BufferPool {
 				blox[k] = blox[k - 1];
 			}
 			blox[0] = b;
-			reads++;
+			reads++; 
 		}
 	} //for each buffer flush if it's dirty
 
@@ -165,13 +169,19 @@ public class BufferPool {
 		int blockN = bytePos / 4096;
 		int posInBlock = bytePos % 4096;
 		int i = 0;
-		while (i < blox.length && blox[i] != null 
-				&& blockN == blox[i].block &&  f.equals(blox[i].file))
+		while ( i < blox.length 
+				&& blox[i] != null 
+				&& !(blockN == blox[i].block 
+				&& f.getFilePointer() == (blox[i].file.getFilePointer()))
+				/*&& f.equals(blox[i].file)*/)
 		{
 			i++;
 		}
-		if (i < blox.length && blox[i] != null 
-				&& blockN != blox[i].block &&  f.equals(blox[i].file))
+		if ( i < blox.length				 
+				&& blox[i] != null
+				&& blockN == blox[i].block
+				/*&& f.equals(blox[i].file)*/
+				&& f.getFilePointer() == (blox[i].file.getFilePointer()))
 		{
 			System.arraycopy(bytes, 0, blox[i].data, posInBlock, numBytesToWrite);
 			blox[i].dbit = true;
@@ -181,7 +191,7 @@ public class BufferPool {
 		else 
 		{
 			f.seek(blockN * 4096);
-			Buffer b = new Buffer(f, i, 4096);
+			Buffer b = new Buffer(f, blockN, 4096);
 			f.read(b.data);
 			System.arraycopy(bytes, 0, b.data, posInBlock, numBytesToWrite);
 			b.dbit = true;
@@ -194,7 +204,7 @@ public class BufferPool {
 			writes++;
 		}
 	} 
-		
+
 	/**
 	 * Flushes 
 	 * @param bu the buffer to flush
@@ -202,7 +212,7 @@ public class BufferPool {
 	 */
 	public void flush(Buffer bu) throws IOException
 	{
-		if (bu != null && bu.dbit == true)
+		if (bu != null && bu.dbit)
 		{
 			bu.file.seek(bu.block * 4096);
 			bu.file.write(bu.data);
@@ -230,5 +240,5 @@ public class BufferPool {
 		s.writeChars("Time to sort: " + x + "\n");
 		s.close();
 	}
-	
+
 }
