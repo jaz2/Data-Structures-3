@@ -65,7 +65,7 @@ extends TestCase {
 		//call merge sort on file generate and give it a name
 		//Mergesort.sort(f.generateFile(args), temp, 0, );
 		//check file
-		Mergesort.main(args);
+		Mergesort.main(args2);
 		
 		assertTrue(c.checkFile(args[0]));
 	}
