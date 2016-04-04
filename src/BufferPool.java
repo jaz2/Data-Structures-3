@@ -118,17 +118,19 @@ public class BufferPool {
 		while (i < blox.length
 				&& blox[i] != null 
 				&& !(blockN == blox[i].block 
-				&& f.getFilePointer() == (blox[i].file.getFilePointer()))/*f.equals(blox[i].file)*/)
+				&& f.getFilePointer() == (blox[i].file.getFilePointer())))
 		{
 			i++;
 		}
 		if (i < blox.length 
 				&& blox[i] != null 
-				&& (blockN == blox[i].block 
-				&& f.getFilePointer() == (blox[i].file.getFilePointer()))/*f.equals(blox[i].file)*/)
+				&& blockN == blox[i].block 
+				&& f.getFilePointer() == (blox[i].file.getFilePointer()))
 		{ //send back to merge sort
 			System.arraycopy(blox[i].data, posInBlock, bytes, 0, numBytesRead);
 			Buffer tem = blox[i];
+			System.out.println(i + " blox[i]");
+			System.out.println(blockN + " blockN");
 			for (int j = i; j > 0; j--)
 			{
 				blox[j] = blox[j - 1];
@@ -172,19 +174,18 @@ public class BufferPool {
 		while ( i < blox.length 
 				&& blox[i] != null 
 				&& !(blockN == blox[i].block 
-				&& f.getFilePointer() == (blox[i].file.getFilePointer()))
-				/*&& f.equals(blox[i].file)*/)
+				&& f.getFilePointer() == (blox[i].file.getFilePointer())))
 		{
 			i++;
 		}
 		if ( i < blox.length				 
 				&& blox[i] != null
 				&& blockN == blox[i].block
-				/*&& f.equals(blox[i].file)*/
 				&& f.getFilePointer() == (blox[i].file.getFilePointer()))
 		{
 			System.arraycopy(bytes, 0, blox[i].data, posInBlock, numBytesToWrite);
 			blox[i].dbit = true;
+			System.out.println(blockN);
 			hits++;
 			//send back to merge sort
 		}
@@ -195,7 +196,7 @@ public class BufferPool {
 			f.read(b.data);
 			System.arraycopy(bytes, 0, b.data, posInBlock, numBytesToWrite);
 			b.dbit = true;
-			flush(blox[blox.length - 1]);		
+			flush(blox[blox.length - 1]);	
 			for (int j = blox.length - 1; j > 0; j--)
 			{
 				blox[j] = blox[j - 1];

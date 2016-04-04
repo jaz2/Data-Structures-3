@@ -142,13 +142,6 @@ public class Mergesort {
 					i2++;
 				}
 			}
-			//merge sort first half 
-			//merge sort second half
-			//merge for(half length * 2)
-			//{
-			// compareTo and increment min 
-			// pointer 
-			//place min value in file
 		}
 	}
 }
