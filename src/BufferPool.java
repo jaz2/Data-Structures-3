@@ -120,7 +120,8 @@ public class BufferPool {
 		{
 			i++;
 		}
-		if (i != blox.length && blox[i] != null)
+		if (i < blox.length && blox[i] != null 
+				&& blockN != blox[i].block &&  f.equals(blox[i].file))
 		{ //send back to merge sort
 			System.arraycopy(blox[i].data, posInBlock, bytes, 0, numBytesRead);
 			Buffer tem = blox[i];

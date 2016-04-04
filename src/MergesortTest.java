@@ -33,18 +33,11 @@ extends TestCase {
 	}
 
 	/**
-	 * First case of Merge sort
-	 */
-	@Test
-	public void testMerge1()
-	{}
-
-	/**
 	 * Tests the stat file
 	 * @throws Exception 
 	 */
 	@Test
-	public void testStat() throws Exception
+	public void testSort() throws Exception
 	{
 		String[] args = new String[3];
 		args[0] = "inputa4.txt";
