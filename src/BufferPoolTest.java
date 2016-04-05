@@ -134,10 +134,18 @@ public class BufferPoolTest extends TestCase {
 		assertTrue(Arrays.equals(a, bytes));
 		
 		pool.write(f, 4, 0, a);
-		pool.write(f, 4, 5000, b);
-		pool.write(f, 4, 10000, c);
-		pool.write(f, 4, 15000, c);
+		pool.write(f, 4, 5000, a);
+		pool.write(f, 4, 10000, a);
+		pool.write(f, 4, 15000, a);
 		pool.write(f, 4, 20000, a);
+		pool.write(f, 4, 25000, a);
+		pool.write(f, 4, 30000, a);
+		pool.write(f, 4, 35000, a);
+		pool.write(f, 4, 40000, a);
+		pool.write(f, 4, 45000, a);
+		pool.write(f, 4, 45000, b);
+		pool.read(f, 4, 45000, bytes);
+		assertTrue(Arrays.equals(b, bytes));
 		pool.write(f, 4, 5000, a);
 		pool.read(f, 4, 5000, bytes);
 		assertTrue(Arrays.equals(a, bytes));
