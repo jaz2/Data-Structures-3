@@ -225,7 +225,6 @@ public class BufferPool {
 	{
 		FileWriter fw = new FileWriter(s, true);
 		BufferedWriter w = new BufferedWriter(fw);
-		//w.write(s);
 		w.write("\nCache hits: " + hits + "\n");
 		w.write("Disk reads: " + reads + "\n");
 		w.write("Disk writes: " + writes + "\n");
