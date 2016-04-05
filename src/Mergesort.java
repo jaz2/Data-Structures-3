@@ -74,6 +74,7 @@ public class Mergesort {
 			}			
 			//RandomAccessFile st = new RandomAccessFile(args[2], "rw");
 			bp.stats(stat, time);
+			
 			f.close();
 			tem.close();
 		}
