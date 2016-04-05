@@ -122,7 +122,6 @@ public class BufferPool {
 		{ //send back to merge sort
 			System.arraycopy(blox[i].data, posInBlock, bytes, 0, numBytesRead);
 			Buffer tem = blox[i];
-			//System.out.println(i + " blox[i] should equal blockN: " + blockN); //TODO
 			for (int j = i; j > 0; j--)
 			{
 				blox[j] = blox[j - 1];
