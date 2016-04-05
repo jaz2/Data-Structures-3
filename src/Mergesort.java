@@ -58,7 +58,6 @@ public class Mergesort {
 		}
 		else 
 		{			
-			System.out.println(args[0]);
 			RandomAccessFile f = new RandomAccessFile(args[0], "rw");
 			RandomAccessFile stat = new RandomAccessFile(args[2], "rw");
 			RandomAccessFile tem = new RandomAccessFile("temp", "rw");

@@ -61,13 +61,6 @@ public class BufferPool {
 		//block number 
 		//file identifier (file 1 or 2 or something)
 		//check if its dirty or not
-
-		//compare it to the file you want
-		//if it is the original file
-		public boolean checkFile(RandomAccessFile f)
-		{
-			return (file.equals(f));
-		}
 	}
 
 	/**
@@ -129,8 +122,7 @@ public class BufferPool {
 		{ //send back to merge sort
 			System.arraycopy(blox[i].data, posInBlock, bytes, 0, numBytesRead);
 			Buffer tem = blox[i];
-			System.out.println(i + " blox[i]");
-			System.out.println(blockN + " blockN");
+			System.out.println(i + " blox[i] should equal blockN: " + blockN); //TODO
 			for (int j = i; j > 0; j--)
 			{
 				blox[j] = blox[j - 1];
@@ -185,7 +177,6 @@ public class BufferPool {
 		{
 			System.arraycopy(bytes, 0, blox[i].data, posInBlock, numBytesToWrite);
 			blox[i].dbit = true;
-			System.out.println(blockN);
 			hits++;
 			//send back to merge sort
 		}
@@ -241,5 +232,4 @@ public class BufferPool {
 		s.writeChars("Time to sort: " + x + "\n");
 		s.close();
 	}
-
 }
