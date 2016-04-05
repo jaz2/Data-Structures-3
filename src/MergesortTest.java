@@ -41,7 +41,7 @@ extends TestCase {
 	{
 		String[] args = new String[3];
 		args[0] = "inputa4.txt";
-		args[1] = "5"; // Buffer pool size
+		args[1] = "2"; // Buffer pool size
 		args[2] = "statFile.txt";
 		String numBlocks = "1"; // Test file size
 		//" a"
