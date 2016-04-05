@@ -29,3 +29,53 @@ Disk reads: 48
 Disk writes: 73
 Time to sort: 108
 ---------------------------
+Cache hits: 51207
+Disk reads: 48
+Disk writes: 73
+Time to sort: 91
+---------------------------
+Cache hits: 51207
+Disk reads: 48
+Disk writes: 73
+Time to sort: 111
+---------------------------
+Cache hits: 51207
+Disk reads: 48
+Disk writes: 73
+Time to sort: 86
+---------------------------
+Cache hits: 51266
+Disk reads: 1
+Disk writes: 2
+Time to sort: 83
+---------------------------
+Cache hits: 51266
+Disk reads: 1
+Disk writes: 2
+Time to sort: 83
+---------------------------
+Cache hits: 51266
+Disk reads: 1
+Disk writes: 2
+Time to sort: 237
+---------------------------
+Cache hits: 51266
+Disk reads: 1
+Disk writes: 2
+Time to sort: 96
+---------------------------
+Cache hits: 51266
+Disk reads: 1
+Disk writes: 2
+Time to sort: 103
+---------------------------
+Cache hits: 51207
+Disk reads: 48
+Disk writes: 73
+Time to sort: 95
+---------------------------
+Cache hits: 51205
+Disk reads: 48
+Disk writes: 73
+Time to sort: 89
+---------------------------
