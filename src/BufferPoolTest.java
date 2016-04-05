@@ -116,7 +116,7 @@ public class BufferPoolTest extends TestCase {
 		byte b[] = {12, 9, 3, 8};
 		byte c[] = {42, 93, 36, 8};
 		BufferPool pool = new BufferPool(10);
-		pool.write(f, 4, 0, a);
+		pool.write(f, 4, 0, a); 
 		pool.read(f, 4, 0, bytes);
 		assertTrue(Arrays.equals(a, bytes));
 		
