@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
@@ -59,7 +60,7 @@ public class Mergesort {
 		else 
 		{			
 			RandomAccessFile f = new RandomAccessFile(args[0], "rw");
-			RandomAccessFile stat = new RandomAccessFile(args[2], "rw");
+			File stat = new File(args[2], "rw");
 			RandomAccessFile tem = new RandomAccessFile("temp", "rw");
 			bp = new BufferPool(Integer.parseInt(args[1]));
 

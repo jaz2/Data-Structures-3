@@ -41,7 +41,7 @@ extends TestCase {
 	{
 		String[] args = new String[3];
 		args[0] = "inputa4.txt";
-		args[1] = "15"; // Buffer pool size
+		args[1] = "3"; // Buffer pool size
 		args[2] = "statFile.txt";
 		//" a"
 		FileGenerator f = new FileGenerator();
