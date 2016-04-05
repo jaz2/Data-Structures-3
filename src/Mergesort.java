@@ -60,7 +60,7 @@ public class Mergesort {
 		else 
 		{			
 			RandomAccessFile f = new RandomAccessFile(args[0], "rw");
-			File stat = new File(args[2], "rw");
+			File stat = new File(args[2]);
 			RandomAccessFile tem = new RandomAccessFile("temp", "rw");
 			bp = new BufferPool(Integer.parseInt(args[1]));
 
