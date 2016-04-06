@@ -59,7 +59,7 @@ public class BufferPoolTest extends TestCase {
 	@Test
 	public void testRead() throws IOException
 	{
-		RandomAccessFile f = new RandomAccessFile("file", "rw");
+		RandomAccessFile f = new RandomAccessFile("new", "rw");
 		byte bytes[] = new byte[4];
 		byte b[] = {22, 9, 3, 8};
 		byte a[] = {4, 38, 66, 7};
