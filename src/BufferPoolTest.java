@@ -150,9 +150,9 @@ public class BufferPoolTest extends TestCase {
 	{
 		RandomAccessFile f = new RandomAccessFile("testLRU", "rw");
 		byte bytes[] = new byte[4];
-		byte a[] = {14, 99, 5, 8};
-		byte b[] = {12, 9, 3, 8};
-		byte c[] = {42, 93, 36, 8};
+		byte a[] = {64, 90, 85, 80};
+		byte b[] = {72, 79, 83, 88};
+		byte c[] = {66, 93, 86, 78};
 		BufferPool pool = new BufferPool(10);
 		pool.write(f, 4, 0, a); 
 		pool.read(f, 4, 0, bytes);
