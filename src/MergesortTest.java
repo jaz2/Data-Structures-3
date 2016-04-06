@@ -83,7 +83,11 @@ extends TestCase {
 		/////assertTrue(Arrays.equals(a, bytes));
 		//buf.read(f, 4, 5000, bytes);
 		//buf.read(f, 4, 9000, bytes);
-		Mergesort.sort(f, t, 0, (int)f.length()/4);			
+		Mergesort.sort(f, t, 0, (int)f.length()/4);	
+		for(int i = 0; i < buf.blox.length; i++)
+		{
+			buf.flush(buf.blox[i]);
+		}					
 		buf = new BufferPool(3);
 		//System.out.println(buf.blox[2].data[1]);
 		//assertFalse(Arrays.equals(b, bytes));
