@@ -124,3 +124,8 @@ Disk reads: 50
 Disk writes: 81
 Time to sort: 86
 ---------------------------
+Cache hits: 51214
+Disk reads: 47
+Disk writes: 73
+Time to sort: 87
+---------------------------
