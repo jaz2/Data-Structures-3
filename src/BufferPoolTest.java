@@ -101,11 +101,11 @@ public class BufferPoolTest extends TestCase {
 		System.out.println(f.read());
 		buff.read(f, 4, 0, bye);
 		assertTrue(Arrays.equals(b, bye));
-		for(int i = 0; i < buf.blox.length; i++)
+		for(int i = 0; i < buff.blox.length; i++)
 		{
-			buf.flush(buf.blox[i]);
+			buff.flush(buf.blox[i]);
 		}					
-		buf = new BufferPool(3);
+		buff = new BufferPool(3);
 		//assertEquals(66, f.read());
 		f.close();
 	}
