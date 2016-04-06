@@ -40,7 +40,7 @@ extends TestCase {
 	public void testSort() throws Exception
 	{
 		String[] args = new String[3];
-		args[0] = "inputa4.txt";
+		args[0] = "original.txt";
 		args[1] = "1"; // Buffer pool size
 		args[2] = "statFile.txt";
 		//" a"

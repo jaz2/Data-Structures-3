@@ -137,7 +137,7 @@ public class Mergesort {
 					//A[curr] = temp[i1++];
 					bp.read(temp, 4, i1 * 4, dat);
 					bp.write(A, 4, curr * 4, dat);
-					i1++;
+					i1++; 
 				}
 				else
 				{
