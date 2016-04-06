@@ -93,9 +93,9 @@ public class BufferPoolTest extends TestCase {
 		f.writeChars("A A A A A");
 		byte bye[] = new byte[4];
 		byte b[] = {66};
-		buff.write(f, 4, 0, bye);
+		buff.write(f, 4, 0, b);
 		//buf.read(f, 4, 0, bye);
-		assertEquals(66, f.read(bye));
+		assertEquals(66, f.read());
 	}
 	
 	/**
