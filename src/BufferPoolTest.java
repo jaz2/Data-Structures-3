@@ -75,10 +75,10 @@ public class BufferPoolTest extends TestCase {
 			buf.flush(buf.blox[i]);
 		}					
 		buf = new BufferPool(3);
-		f.close();
 		//System.out.println(buf.blox[2].data[1]);
 		//assertFalse(Arrays.equals(b, bytes));
 		assertEquals(4, f.read());
+		f.close();
 	} //write a file and check when u write on top
 	
 	/**
