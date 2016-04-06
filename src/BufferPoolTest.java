@@ -186,11 +186,11 @@ public class BufferPoolTest extends TestCase {
 		assertTrue(Arrays.equals(b, bytes));
 		pool.write(f, 4, 5000, a);
 		pool.read(f, 4, 5000, bytes);
-		for(int i = 0; i < buf.blox.length; i++)
+		for(int i = 0; i < pool.blox.length; i++)
 		{
-			buf.flush(buf.blox[i]);
+			pool.flush(pool.blox[i]);
 		}					
-		buf = new BufferPool(3);
+		pool = new BufferPool(3);
 		f.close();
 		assertTrue(Arrays.equals(a, bytes));
 	}
