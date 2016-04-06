@@ -112,14 +112,14 @@ public class BufferPool {
 		while (i < blox.length
 				&& blox[i] != null 
 				&& !(blockN == blox[i].block 
-				&& f.getFilePointer() == (blox[i].file.getFilePointer())))
+				&& f == blox[i].file))
 		{
 			i++;
 		}
 		if (i < blox.length 
 				&& blox[i] != null 
 				&& blockN == blox[i].block 
-				&& f.getFilePointer() == (blox[i].file.getFilePointer()))
+				&& f == blox[i].file)
 		{ //send back to merge sort
 			System.arraycopy(blox[i].data, posInBlock, bytes, 0, numBytesRead);
 			Buffer tem = blox[i];
@@ -166,14 +166,14 @@ public class BufferPool {
 		while ( i < blox.length 
 				&& blox[i] != null 
 				&& !(blockN == blox[i].block 
-				&& f.getFilePointer() == (blox[i].file.getFilePointer())))
+				&& f == blox[i].file))
 		{
 			i++;
 		}
 		if ( i < blox.length				 
 				&& blox[i] != null
 				&& blockN == blox[i].block
-				&& f.getFilePointer() == (blox[i].file.getFilePointer()))
+				&& f == blox[i].file)
 		{
 			System.arraycopy(bytes, 0, blox[i].data, posInBlock, numBytesToWrite);
 			blox[i].dbit = true;

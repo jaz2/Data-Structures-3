@@ -71,7 +71,7 @@ extends TestCase {
 		RandomAccessFile t = new RandomAccessFile("tfile", "rw");
 		CheckFile c = new CheckFile();
 		BufferPool buf = new BufferPool(3);
-		f.writeChars("IPFHAJCBUXZY");
+		f.writeChars("ALPHABET");
 		byte bytes[] = new byte[4];
 		byte b[] = {88, 70, 73, 80};
 		byte a[] = {66, 78, 66, 79};
@@ -83,7 +83,8 @@ extends TestCase {
 		/////assertTrue(Arrays.equals(a, bytes));
 		//buf.read(f, 4, 5000, bytes);
 		//buf.read(f, 4, 9000, bytes);
-		Mergesort.sort(f, t, 0, (int)f.length()/4);	
+		Mergesort.sort(f, t, 0, (int)(f.length()/4)
+			);	
 		for(int i = 0; i < buf.blox.length; i++)
 		{
 			buf.flush(buf.blox[i]);
