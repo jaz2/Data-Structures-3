@@ -65,9 +65,9 @@ public class BufferPoolTest extends TestCase {
     public void testReadBlock() throws IOException
     {
         RandomAccessFile f = new RandomAccessFile("file", "rw");
-        byte bytes[] = new byte[4];
-        byte b[] = {72, 79, 63, 68};
-        byte a[] = {54, 99, 75, 88};
+        byte[] bytes = new byte[4];
+        byte[] b = {72, 79, 63, 68};
+        byte[] a = {54, 99, 75, 88};
         buf.write(f, 4, 0, a);
         buf.write(f, 4, 5000, a);
         buf.write(f, 4, 10000, a);
@@ -77,7 +77,7 @@ public class BufferPoolTest extends TestCase {
         buf.read(f, 4, 0, bytes);
         assertTrue(Arrays.equals(b, bytes));
         buf.read(f, 4, 5000, bytes);
-        for(int i = 0; i < buf.blox.length; i++)
+        for (int i = 0; i < buf.blox.length; i++)
         {
             buf.flush(buf.blox[i]);
         }                    
