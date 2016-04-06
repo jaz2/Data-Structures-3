@@ -89,12 +89,13 @@ public class BufferPoolTest extends TestCase {
 	public void testFileWrite() throws IOException
 	{
 		RandomAccessFile f = new RandomAccessFile("file", "rw");
+		BufferPool buff = new BufferPool(3);
 		f.writeChars("A A A A A");
 		byte bye[] = new byte[4];
 		byte b[] = {66};
-		buf.write(f, 4, 0, bye);
+		buff.write(f, 4, 0, bye);
 		//buf.read(f, 4, 0, bye);
-		assertEquals(66, f.read());
+		assertEquals(66, f.read(bye));
 	}
 	
 	/**
