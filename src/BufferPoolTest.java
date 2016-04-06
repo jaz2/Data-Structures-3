@@ -2,6 +2,7 @@ import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.util.Arrays;
 
@@ -91,7 +92,7 @@ public class BufferPoolTest extends TestCase {
 		RandomAccessFile f = new RandomAccessFile("file", "rw");
 		BufferPool buff = new BufferPool(3);
 		byte y[] = {34, 34, 34, 34, 34};
-		buff.write(f, 4, 0, y);
+		f.write(y);
 		byte bye[] = new byte[4];
 		byte b[] = {66, 65, 65, 65, 65};
 		buff.write(f, 4, 0, b);
