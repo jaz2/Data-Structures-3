@@ -82,6 +82,22 @@ public class BufferPoolTest extends TestCase {
 	} //write a file and check when u write on top
 	
 	/**
+	 * Tests if file is being flushed correctly
+	 * @throws IOException 
+	 */
+	@Test
+	public void testFileWrite() throws IOException
+	{
+		RandomAccessFile f = new RandomAccessFile("file", "rw");
+		f.writeChars("A A A A A");
+		byte bye[] = new byte[4];
+		byte b[] = {66};
+		buf.write(f, 4, 0, b);
+		//buf.read(f, 4, 0, bye);
+		assertEquals(66, f.read());
+	}
+	
+	/**
 	 * Checks if the block has the data equal
 	 *  to the array 
 	 * @throws IOException 
