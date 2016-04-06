@@ -61,7 +61,7 @@ public class BufferPoolTest extends TestCase {
 	public void testRead() throws IOException
 	{
 		RandomAccessFile f = new RandomAccessFile("new", "rw");
-		//f.writeChars("ABCD");
+		f.writeChars("ABCD");
 		byte bytes[] = new byte[4];
 		byte b[] = {88, 70, 73, 80};
 		byte a[] = {66, 78, 66, 79};
