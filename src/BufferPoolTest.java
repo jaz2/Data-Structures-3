@@ -120,8 +120,8 @@ public class BufferPoolTest extends TestCase {
 	{
 		RandomAccessFile f = new RandomAccessFile("file", "rw");
 		byte bytes[] = new byte[4];
-		byte b[] = {12, 9, 3, 8};
-		byte a[] = {14, 99, 5, 8};
+		byte b[] = {72, 79, 63, 68};
+		byte a[] = {54, 99, 75, 88};
 		buf.write(f, 4, 0, a);
 		buf.write(f, 4, 5000, a);
 		buf.write(f, 4, 10000, a);
