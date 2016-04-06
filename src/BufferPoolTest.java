@@ -90,12 +90,14 @@ public class BufferPoolTest extends TestCase {
 	{
 		RandomAccessFile f = new RandomAccessFile("file", "rw");
 		BufferPool buff = new BufferPool(3);
-		f.writeChars("A A A A A");
+		byte y[] = {34, 34, 34, 34, 34};
+		f.write(y);;
 		byte bye[] = new byte[4];
 		byte b[] = {66, 65, 65, 65, 65};
 		buff.write(f, 4, 0, b);
-		//buf.read(f, 4, 0, bye);
-		assertEquals(66, f.read());
+		buf.read(f, 4, 0, bye);
+		assertTrue(Arrays.equals(b, bye));
+		//assertEquals(66, f.read());
 		f.close();
 	}
 	
