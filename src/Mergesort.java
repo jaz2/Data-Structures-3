@@ -65,7 +65,7 @@ public class Mergesort {
 			bp = new BufferPool(Integer.parseInt(args[1]));
 
 			long start = System.currentTimeMillis();
-			sort(f, tem, 0, (int)f.length() / 4); 
+			sort(f, tem, 0, ((int)f.length() / 4) - 1); 
 			long end = System.currentTimeMillis();
 			long time = end - start;
 
