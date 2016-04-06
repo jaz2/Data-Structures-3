@@ -73,11 +73,9 @@ public class Mergesort {
 			{
 				bp.flush(bp.blox[i]);
 			}			
-			//RandomAccessFile st = new RandomAccessFile(args[2], "rw");
 			
 			bp.stats(stat, time);
 			
-			//f.close();
 			tem.close();
 			f.close();
 		}

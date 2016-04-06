@@ -208,7 +208,6 @@ public class BufferPool {
 		{
 			bu.file.seek(bu.block * 4096);
 			bu.file.write(bu.data);
-			//bu.file.write(bu.data, bu.block * 4096, 4);
 			bu.dbit = false;
 			writes++;
 		}

@@ -101,6 +101,11 @@ public class BufferPoolTest extends TestCase {
 		System.out.println(f.read());
 		buff.read(f, 4, 0, bye);
 		assertTrue(Arrays.equals(b, bye));
+		for(int i = 0; i < buf.blox.length; i++)
+		{
+			buf.flush(buf.blox[i]);
+		}					
+		buf = new BufferPool(3);
 		//assertEquals(66, f.read());
 		f.close();
 	}
@@ -126,6 +131,11 @@ public class BufferPoolTest extends TestCase {
 		buf.read(f, 4, 0, bytes);
 		assertTrue(Arrays.equals(b, bytes));
 		buf.read(f, 4, 5000, bytes);
+		for(int i = 0; i < buf.blox.length; i++)
+		{
+			buf.flush(buf.blox[i]);
+		}					
+		buf = new BufferPool(3);
 		f.close();
 		assertTrue(Arrays.equals(a, bytes));
 		//assertTrue(Arrays.equals(bytes, buf.blox[0].data));
@@ -176,6 +186,11 @@ public class BufferPoolTest extends TestCase {
 		assertTrue(Arrays.equals(b, bytes));
 		pool.write(f, 4, 5000, a);
 		pool.read(f, 4, 5000, bytes);
+		for(int i = 0; i < buf.blox.length; i++)
+		{
+			buf.flush(buf.blox[i]);
+		}					
+		buf = new BufferPool(3);
 		f.close();
 		assertTrue(Arrays.equals(a, bytes));
 	}
