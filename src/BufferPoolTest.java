@@ -92,7 +92,7 @@ public class BufferPoolTest extends TestCase {
 		BufferPool buff = new BufferPool(3);
 		f.writeChars("A A A A A");
 		byte bye[] = new byte[4];
-		byte b[] = {66};
+		byte b[] = {6644};
 		buff.write(f, 4, 0, b);
 		//buf.read(f, 4, 0, bye);
 		assertEquals(66, f.read());
