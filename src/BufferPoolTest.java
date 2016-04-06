@@ -95,10 +95,10 @@ public class BufferPoolTest extends TestCase {
     public void testLRU() throws IOException
     {
         RandomAccessFile f = new RandomAccessFile("testLRU", "rw");
-        byte bytes[] = new byte[4];
-        byte a[] = {64, 90, 85, 80};
-        byte b[] = {72, 79, 83, 88};
-        byte c[] = {66, 93, 86, 78};
+        byte[] bytes = new byte[4];
+        byte[] a = {64, 90, 85, 80};
+        byte[] b = {72, 79, 83, 88};
+        byte[] c = {66, 93, 86, 78};
         BufferPool pool = new BufferPool(10);
         pool.write(f, 4, 0, a); 
         pool.read(f, 4, 0, bytes);
@@ -132,7 +132,7 @@ public class BufferPoolTest extends TestCase {
         assertTrue(Arrays.equals(b, bytes));
         pool.write(f, 4, 5000, a);
         pool.read(f, 4, 5000, bytes);
-        for(int i = 0; i < pool.blox.length; i++)
+        for (int i = 0; i < pool.blox.length; i++)
         {
             pool.flush(pool.blox[i]);
         }                    

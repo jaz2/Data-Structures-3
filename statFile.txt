@@ -269,3 +269,13 @@ Disk reads: 18435
 Disk writes: 40960
 Time to sort: 202
 ---------------------------
+Cache hits: 19793
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 248
+---------------------------
+Cache hits: 19909
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 158
+---------------------------

@@ -14,31 +14,28 @@ import java.io.RandomAccessFile;
  *
  */
 public class BufferPool {
-    //one buffer that manages two files
-    //param in buffer: file, number to read (4), byte_pos (where it is)
-    //byte_pos => x(pos)/1024(block size)
-    //find loc of byte = byte_pos % block_size
-    // byte_pos = blocknum * block_size + posInBlock
-    //client would give an array and you can stuff it in, instead of making a new array
-    //store block num and file it came from
-    //make an array (circular array)
-    //insert on bottom take from top
-    //what if u use something already in buffer pool? have to swap 
-    // each block is 4096 bytes
 
-    //only writes to disk when something is changed and is flushed back (LRU)
+    /**
+     * The buffer class 
+     * @author Jazmine Zurita and Jessica McCready
+     * @version April 6 2016
+     *
+     */
     public class Buffer {
 
         /**
          * The array of data in buffer
          */
-        public byte data[];
+        public byte[] data;
 
         /**
          * The block number
          */
         public int block;
 
+        /**
+         * The way we will distinguish files
+         */
         public RandomAccessFile file;
 
         /**
@@ -68,7 +65,7 @@ public class BufferPool {
     /**
      * Array holding the buffers
      */
-    public Buffer blox[]; //this will be the circular array
+    public Buffer[] blox;
 
     /**
      * for stats
@@ -181,7 +178,8 @@ public class BufferPool {
                 && blockN == blox[i].block
                 && f == blox[i].file)
         {
-            System.arraycopy(bytes, 0, blox[i].data, posInBlock, numBytesToWrite);
+            System.arraycopy(bytes, 0, blox[i].data, 
+                    posInBlock, numBytesToWrite);
             blox[i].dbit = true;
             hits++;
             //send back to merge sort
