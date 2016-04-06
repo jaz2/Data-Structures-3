@@ -57,62 +57,6 @@ public class BufferPoolTest extends TestCase {
     }
     
     /**
-     * tests read method
-`     * @throws IOException
-     */
-    @Test
-    public void testRead() throws IOException
-    {
-        RandomAccessFile f = new RandomAccessFile("new", "rw");
-        f.writeChars("ACD");
-        byte bytes[] = new byte[4];
-        byte b[] = {88, 70, 73, 80};
-        byte a[] = {66, 78, 66, 79};
-        buf.write(f, 4, 0, b);
-        //buf.write(f, 4, 5000, b);
-        //buf.write(f, 4, 9000, b);
-        buf.write(f, 4, 0, a);
-        buf.read(f, 4, 0, bytes);
-        assertTrue(Arrays.equals(a, bytes));
-        //buf.read(f, 4, 5000, bytes);
-        //buf.read(f, 4, 9000, bytes);
-        for(int i = 0; i < buf.blox.length; i++)
-        {
-            buf.flush(buf.blox[i]);
-        }                    
-        buf = new BufferPool(3);
-        //System.out.println(buf.blox[2].data[1]);
-        //assertFalse(Arrays.equals(b, bytes));
-        assertEquals("B", f.read());
-        f.close();
-    } //write a file and check when u write on top
-    
-    /**
-     * Tests if file is being flushed correctly
-     * @throws IOException 
-     */
-    @Test
-    public void testFileWrite() throws IOException
-    {
-        RandomAccessFile f = new RandomAccessFile("writetest", "rw");
-        BufferPool buff = new BufferPool(3);
-        byte y[] = {67, 67, 67, 67, 67};
-        f.write(y);
-        byte bye[] = new byte[4];
-        byte b[] = {66, 65, 65, 65, 65};
-        buff.write(f, 4, 0, bye);
-        buff.read(f, 4, 0, bye);
-        assertTrue(Arrays.equals(b, bye));
-        for(int i = 0; i < buff.blox.length; i++)
-        {
-            buff.flush(buf.blox[i]);
-        }                    
-        buff = new BufferPool(3);
-        //assertEquals(66, f.read());
-        f.close();
-    }
-    
-    /**
      * Checks if the block has the data equal
      *  to the array 
      * @throws IOException 

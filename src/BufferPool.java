@@ -87,6 +87,7 @@ public class BufferPool {
 
     /**
      * Constructor for the bufferPool
+     * @param numOfBlocks the number of blocks
      */
     public BufferPool(int numOfBlocks)
     { //make an array storing buffers
@@ -98,13 +99,14 @@ public class BufferPool {
 
     /**
      * 
-     * @param file the file to read
+     * @param f the file to read
      * @param numBytesRead will always be 4 for this project
      * @param bytePos the position of the byte
      * @param bytes the array to return 
      * @throws IOException 
      */
-    public void read(RandomAccessFile f, int numBytesRead, int bytePos, byte[] bytes) throws IOException
+    public void read(RandomAccessFile f, int numBytesRead, 
+            int bytePos, byte[] bytes) throws IOException
     {
         //locToStart = blocknum * block_size + posInBlock;
         int blockN = bytePos / 4096; //block
@@ -122,7 +124,8 @@ public class BufferPool {
                 && blockN == blox[i].block 
                 && f == blox[i].file)
         { //send back to merge sort
-            System.arraycopy(blox[i].data, posInBlock, bytes, 0, numBytesRead);
+            System.arraycopy(blox[i].data, posInBlock, 
+                    bytes, 0, numBytesRead);
             Buffer tem = blox[i];
             for (int j = i; j > 0; j--)
             {
@@ -136,7 +139,8 @@ public class BufferPool {
             f.seek(blockN * 4096);
             Buffer b = new Buffer(f, blockN, 4096);
             f.read(b.data);
-            System.arraycopy(b.data, posInBlock, bytes, 0, numBytesRead);
+            System.arraycopy(b.data, posInBlock, 
+                    bytes, 0, numBytesRead);
             flush(blox[blox.length - 1]);
             for (int k = blox.length - 1; k > 0; k--)
             {
@@ -152,13 +156,14 @@ public class BufferPool {
     /**
      * Writes over the buffer, or the file
      * if buffer does not contain it
-     * @param file the file to access
+     * @param f the file to access
      * @param numBytesToWrite the number of bytes (4)
      * @param bytePos position to start
      * @param bytes the array to write in
      * @throws IOException 
      */
-    public void write(RandomAccessFile f, int numBytesToWrite, int bytePos, byte[] bytes) throws IOException
+    public void write(RandomAccessFile f, int numBytesToWrite, 
+            int bytePos, byte[] bytes) throws IOException
     {
         //when you flush, reset the dirty bit to false
         int blockN = bytePos / 4096;
@@ -186,7 +191,8 @@ public class BufferPool {
             f.seek(blockN * 4096);
             Buffer b = new Buffer(f, blockN, 4096);
             f.read(b.data);
-            System.arraycopy(bytes, 0, b.data, posInBlock, numBytesToWrite);
+            System.arraycopy(bytes, 0, b.data, 
+                    posInBlock, numBytesToWrite);
             b.dbit = true;
             flush(blox[blox.length - 1]);    
             for (int j = blox.length - 1; j > 0; j--)
