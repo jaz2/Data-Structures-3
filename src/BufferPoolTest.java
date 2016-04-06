@@ -50,6 +50,7 @@ public class BufferPoolTest extends TestCase {
 		bp.write(file, 4, 0, b);		
 		bp.read(file, 4, 0, bye);
 		assertTrue(Arrays.equals(b, bye));
+		f.close();
 	}
 	
 	/**
