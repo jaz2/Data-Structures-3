@@ -80,7 +80,7 @@ public class BufferPoolTest extends TestCase {
 		buf = new BufferPool(3);
 		//System.out.println(buf.blox[2].data[1]);
 		//assertFalse(Arrays.equals(b, bytes));
-		assertEquals("B", f.toString());
+		assertEquals("B", f.read());
 		f.close();
 	} //write a file and check when u write on top
 	
