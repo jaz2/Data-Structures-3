@@ -115,7 +115,7 @@ public class Mergesort {
 				//A[curr] = temp[i2++];
 				bp.read(temp, 4, i2 * 4, dat);
 				bp.write(A, 4, curr * 4, dat);
-				i2++;
+				i2++; 
 			}
 			else if (i2 > right)             
 			{ // Right sublist exhausted
