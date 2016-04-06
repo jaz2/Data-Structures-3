@@ -96,7 +96,7 @@ public class BufferPoolTest extends TestCase {
 		byte bye[] = new byte[4];
 		byte b[] = {66, 65, 65, 65, 65};
 		buff.write(f, 4, 0, bye);
-		System.out.println(f.readLine());
+		System.out.println(f.readUTF());
 		buff.read(f, 4, 0, bye);
 		assertTrue(Arrays.equals(b, bye));
 		//assertEquals(66, f.read());
