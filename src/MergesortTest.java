@@ -71,7 +71,7 @@ extends TestCase {
 		RandomAccessFile t = new RandomAccessFile("tfile", "rw");
 		CheckFile c = new CheckFile();
 		BufferPool buf = new BufferPool(3);
-		f.writeChars("ABCD");
+		f.writeChars("ACD");
 		byte bytes[] = new byte[4];
 		byte b[] = {88, 70, 73, 80};
 		byte a[] = {66, 78, 66, 79};
