@@ -91,7 +91,7 @@ public class BufferPoolTest extends TestCase {
 		RandomAccessFile f = new RandomAccessFile("file", "rw");
 		BufferPool buff = new BufferPool(3);
 		byte y[] = {34, 34, 34, 34, 34};
-		f.write(y);;
+		f.write(y);
 		byte bye[] = new byte[4];
 		byte b[] = {66, 65, 65, 65, 65};
 		buff.write(f, 4, 0, b);
