@@ -66,13 +66,13 @@ public class BufferPoolTest extends TestCase {
 		byte b[] = {88, 70, 73, 80};
 		byte a[] = {66, 78, 66, 79};
 		buf.write(f, 4, 0, b);
-		buf.write(f, 4, 5000, b);
-		buf.write(f, 4, 9000, b);
+		//buf.write(f, 4, 5000, b);
+		//buf.write(f, 4, 9000, b);
 		buf.write(f, 4, 0, a);
 		buf.read(f, 4, 0, bytes);
 		assertTrue(Arrays.equals(a, bytes));
-		buf.read(f, 4, 5000, bytes);
-		buf.read(f, 4, 9000, bytes);
+		//buf.read(f, 4, 5000, bytes);
+		//buf.read(f, 4, 9000, bytes);
 		for(int i = 0; i < buf.blox.length; i++)
 		{
 			buf.flush(buf.blox[i]);
