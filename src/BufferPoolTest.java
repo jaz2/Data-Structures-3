@@ -75,10 +75,11 @@ public class BufferPoolTest extends TestCase {
 			buf.flush(buf.blox[i]);
 		}					
 		buf = new BufferPool(3);
+		f.close();
 		//System.out.println(buf.blox[2].data[1]);
 		//assertFalse(Arrays.equals(b, bytes));
 		assertEquals(4, f.read());
-	}
+	} //write a file and check when u write on top
 	
 	/**
 	 * Checks if the block has the data equal
@@ -101,6 +102,7 @@ public class BufferPoolTest extends TestCase {
 		buf.read(f, 4, 0, bytes);
 		assertTrue(Arrays.equals(b, bytes));
 		buf.read(f, 4, 5000, bytes);
+		f.close();
 		assertTrue(Arrays.equals(a, bytes));
 		//assertTrue(Arrays.equals(bytes, buf.blox[0].data));
 	}
@@ -150,6 +152,7 @@ public class BufferPoolTest extends TestCase {
 		assertTrue(Arrays.equals(b, bytes));
 		pool.write(f, 4, 5000, a);
 		pool.read(f, 4, 5000, bytes);
+		f.close();
 		assertTrue(Arrays.equals(a, bytes));
 	}
 }

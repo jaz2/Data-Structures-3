@@ -96,6 +96,8 @@ public class Mergesort {
 		byte[] dat = new byte[4];
 		if (left == right) return;         // List has one record
 		int mid = (left + right) / 2;          // Select midpoint
+		//if (mid % 4 != 0)
+		//	mid = mid++;///use ByteBuffer shift it by 1
 		sort(A, temp, left, mid);     // Mergesort first half
 		sort(A, temp, mid + 1, right);  // Mergesort second half
 		for (int i = left; i <= right; i++)    // Copy subarray to temp

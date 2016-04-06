@@ -89,3 +89,23 @@ Disk reads: 48
 Disk writes: 73
 Time to sort: 99
 ---------------------------
+Cache hits: 51212
+Disk reads: 51
+Disk writes: 84
+Time to sort: 86
+---------------------------
+Cache hits: 51212
+Disk reads: 51
+Disk writes: 84
+Time to sort: 89
+---------------------------
+Cache hits: 51206
+Disk reads: 51
+Disk writes: 84
+Time to sort: 84
+---------------------------
+Cache hits: 51198
+Disk reads: 51
+Disk writes: 84
+Time to sort: 96
+---------------------------
