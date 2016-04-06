@@ -64,7 +64,7 @@ public class BufferPoolTest extends TestCase {
 		f.writeChars("B Y B I");
 		byte bytes[] = new byte[4];
 		byte b[] = {22, 59, 38, 80};
-		byte a[] = {4, 38, 66, 79, 59};
+		byte a[] = {4, 38, 66, 79};
 		buf.write(f, 4, 0, b);
 		buf.write(f, 4, 5000, b);
 		buf.write(f, 4, 9000, b);
