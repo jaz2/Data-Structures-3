@@ -90,7 +90,7 @@ public class BufferPoolTest extends TestCase {
 	@Test
 	public void testFileWrite() throws IOException
 	{
-		RandomAccessFile f = new RandomAccessFile("file", "rw");
+		RandomAccessFile f = new RandomAccessFile("writetest", "rw");
 		BufferPool buff = new BufferPool(3);
 		byte y[] = {34, 34, 34, 34, 34};
 		f.write(y);
@@ -137,7 +137,7 @@ public class BufferPoolTest extends TestCase {
 	@Test
 	public void testLRU() throws IOException
 	{
-		RandomAccessFile f = new RandomAccessFile("file", "rw");
+		RandomAccessFile f = new RandomAccessFile("testLRU", "rw");
 		byte bytes[] = new byte[4];
 		byte a[] = {14, 99, 5, 8};
 		byte b[] = {12, 9, 3, 8};
