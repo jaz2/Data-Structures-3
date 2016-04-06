@@ -70,6 +70,7 @@ public class BufferPoolTest extends TestCase {
 		assertTrue(Arrays.equals(a, bytes));
 		buf.read(f, 4, 5000, bytes);
 		buf.read(f, 4, 9000, bytes);
+		buf.write(f, 4, 0, b);
 		for(int i = 0; i < buf.blox.length; i++)
 		{
 			buf.flush(buf.blox[i]);
