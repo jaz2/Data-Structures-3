@@ -36,20 +36,16 @@ import java.nio.ByteBuffer;
  * @version March 29 2016
  */
 public class Mergesort {
-    //create a temp file
-    //split file and put half in temp
-    //split THAT first file and at some point 
-    //eventually sort, prob during merge part
-    //merge sort first half mer.. second and then merge together
 
-    //need class for statistics
-
+    /**
+     * The bufferpool class
+     */
     public static BufferPool bp;
 
     /**
      * The entry point of the application
      * 
-     * @param args
+     * @param args the arguments
      * @throws IOException 
      */
     public static void main(String[] args) throws IOException {
@@ -69,7 +65,7 @@ public class Mergesort {
             long end = System.currentTimeMillis();
             long time = end - start;
 
-            for(int i = 0; i < bp.blox.length; i++)
+            for (int i = 0; i < bp.blox.length; i++)
             {
                 bp.flush(bp.blox[i]);
             }            
@@ -83,25 +79,24 @@ public class Mergesort {
 
     /**
      * The sort method
-     * @param A original file
+     * @param a original file
      * @param temp the temp file
      * @param left the original start of file
      * @param right end of file
      * @throws IOException
      */
-    public static void sort(RandomAccessFile A, RandomAccessFile temp, int left, int right) throws IOException
+    public static void sort(RandomAccessFile a, RandomAccessFile temp, 
+            int left, int right) throws IOException
     {
         byte[] dat = new byte[4];
         if (left == right) return;         // List has one record
         int mid = (left + right) / 2;          // Select midpoint
-        //if (mid % 4 != 0)
-        //    mid = mid++;///use ByteBuffer shift it by 1
-        sort(A, temp, left, mid);     // Mergesort first half
-        sort(A, temp, mid + 1, right);  // Mergesort second half
+        sort(a, temp, left, mid);     // Mergesort first half
+        sort(a, temp, mid + 1, right);  // Mergesort second half
         for (int i = left; i <= right; i++)    // Copy subarray to temp
         {
             //temp[i] = A[i];
-            bp.read(A, 4, i * 4, dat);
+            bp.read(a, 4, i * 4, dat);
             bp.write(temp, 4, i * 4, dat);
         }
         // Do the merge operation back to A
@@ -112,14 +107,14 @@ public class Mergesort {
             { // Left sublist exhausted
                 //A[curr] = temp[i2++];
                 bp.read(temp, 4, i2 * 4, dat);
-                bp.write(A, 4, curr * 4, dat);
+                bp.write(a, 4, curr * 4, dat);
                 i2++; 
             }
             else if (i2 > right)             
             { // Right sublist exhausted
                 //A[curr] = temp[i1++];
                 bp.read(temp, 4, i1 * 4, dat);
-                bp.write(A, 4, curr * 4, dat);
+                bp.write(a, 4, curr * 4, dat);
                 i1++;
             }
             else 
@@ -134,14 +129,14 @@ public class Mergesort {
                 { // Get smaller value
                     //A[curr] = temp[i1++];
                     bp.read(temp, 4, i1 * 4, dat);
-                    bp.write(A, 4, curr * 4, dat);
+                    bp.write(a, 4, curr * 4, dat);
                     i1++; 
                 }
                 else
                 {
                     //A[curr] = temp[i2++];
                     bp.read(temp, 4, i2 * 4, dat);
-                    bp.write(A, 4, curr * 4, dat);
+                    bp.write(a, 4, curr * 4, dat);
                     i2++;
                 }
             }

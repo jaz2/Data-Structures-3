@@ -279,3 +279,108 @@ Disk reads: 18435
 Disk writes: 40960
 Time to sort: 158
 ---------------------------
+Cache hits: 19789
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 215
+---------------------------
+Cache hits: 19905
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 154
+---------------------------
+Cache hits: 19857
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 239
+---------------------------
+Cache hits: 19891
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 172
+---------------------------
+Cache hits: 19811
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 155
+---------------------------
+Cache hits: 19833
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 191
+---------------------------
+Cache hits: 19917
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 155
+---------------------------
+Cache hits: 19781
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 249
+---------------------------
+Cache hits: 19903
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 158
+---------------------------
+Cache hits: 19883
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 201
+---------------------------
+Cache hits: 19887
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 158
+---------------------------
+Cache hits: 19859
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 216
+---------------------------
+Cache hits: 19917
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 153
+---------------------------
+Cache hits: 19811
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 191
+---------------------------
+Cache hits: 19951
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 160
+---------------------------
+Cache hits: 19783
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 240
+---------------------------
+Cache hits: 19937
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 161
+---------------------------
+Cache hits: 19871
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 222
+---------------------------
+Cache hits: 19955
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 171
+---------------------------
+Cache hits: 19801
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 203
+---------------------------
+Cache hits: 20003
+Disk reads: 18435
+Disk writes: 40960
+Time to sort: 162
+---------------------------

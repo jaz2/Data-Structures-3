@@ -20,12 +20,12 @@ import student.TestCase;
  * @version March 22 2016
  */
 public class BufferPoolTest extends TestCase {
-    
+
     /**
      * The buffer 
      */
     public BufferPool buf;
-    
+
     /**
      * @throws java.lang.Exception
      */
@@ -55,7 +55,7 @@ public class BufferPoolTest extends TestCase {
         assertTrue(Arrays.equals(b, bye));
         file.close();
     }
-    
+
     /**
      * Checks if the block has the data equal
      *  to the array 
@@ -86,7 +86,7 @@ public class BufferPoolTest extends TestCase {
         assertTrue(Arrays.equals(a, bytes));
         //assertTrue(Arrays.equals(bytes, buf.blox[0].data));
     }
-    
+
     /**
      * Checks if LRU is working as it should
      * @throws IOException 
@@ -103,20 +103,20 @@ public class BufferPoolTest extends TestCase {
         pool.write(f, 4, 0, a); 
         pool.read(f, 4, 0, bytes);
         assertTrue(Arrays.equals(a, bytes));
-        
+
         pool.write(f, 4, 5000, b); 
         pool.read(f, 4, 5000, bytes);
         assertTrue(Arrays.equals(b, bytes));
-        
+
         pool.write(f, 4, 10000, c);
-                
+
         pool.read(f, 4, 10000, bytes);
         assertTrue(Arrays.equals(c, bytes));
-        
+
         pool.write(f, 4, 5000, a);
         pool.read(f, 4, 5000, bytes);
         assertTrue(Arrays.equals(a, bytes));
-        
+
         pool.write(f, 4, 0, a);
         pool.write(f, 4, 5000, a);
         pool.write(f, 4, 10000, a);
@@ -139,5 +139,63 @@ public class BufferPoolTest extends TestCase {
         pool = new BufferPool(3);
         f.close();
         assertTrue(Arrays.equals(a, bytes));
+    }
+
+    /**
+     * tests write from buffer
+     * @throws IOException
+     */
+    public void testWritefromBuff() throws IOException 
+    {
+        RandomAccessFile f = new RandomAccessFile("file", "rw");
+        byte[] bytes = new byte[4];
+        byte[] b = {(byte)46, (byte)47, (byte)48, (byte)49};
+        buf.write(f, 4, 5000, b);
+        buf.flush(buf.blox[0]);
+        f.seek(5000);
+        f.read(bytes);
+        assertTrue(Arrays.equals(bytes, b));
+
+        f.close();
+    }
+
+    /**
+     * tests read method
+     * @throws IOException
+     */
+    public void testRead() throws IOException
+    {
+        RandomAccessFile f = new RandomAccessFile("file", "rw");
+        byte[] bytes = new byte[4]; 
+        byte[] b = {(byte)12, (byte)9, (byte)3, (byte)8};
+        buf.write(f, 4, 0, b);
+        buf.write(f, 4, 5000, b);
+        buf.write(f, 4, 10000, b); 
+        buf.read(f, 4, 0, bytes);
+        assertTrue(Arrays.equals(b, bytes));
+
+        for (int i = 0; i < buf.blox.length; i++)
+        {
+            buf.flush(buf.blox[i]);
+            System.out.println(i);
+        }
+        buf.read(f, 4, 5000, bytes); 
+        assertTrue(Arrays.equals(bytes, b));
+
+        f.close();
+    }
+
+    /**
+     * test read method from the file
+     * @throws IOException
+     */
+    public void testReadFromFile() throws IOException
+    {
+        RandomAccessFile f = new RandomAccessFile("file", "rw");
+        byte[] bytes = new byte[4];
+        byte[] b = {(byte)12, (byte)9, (byte)3, (byte)8};
+        buf.read(f, 4, 5000, bytes);     
+        assertTrue(Arrays.equals(bytes, b));
+        f.close();
     }
 }
