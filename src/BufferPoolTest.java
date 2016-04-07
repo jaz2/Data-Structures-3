@@ -184,18 +184,4 @@ public class BufferPoolTest extends TestCase {
 
         f.close();
     }
-
-    /**
-     * test read method from the file
-     * @throws IOException
-     */
-    public void testReadFromFile() throws IOException
-    {
-        RandomAccessFile f = new RandomAccessFile("file", "rw");
-        byte[] bytes = new byte[4];
-        byte[] b = {(byte)12, (byte)9, (byte)3, (byte)8};
-        buf.read(f, 4, 5000, bytes);     
-        assertTrue(Arrays.equals(bytes, b));
-        f.close();
-    }
 }
