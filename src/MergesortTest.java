@@ -41,7 +41,7 @@ public class MergesortTest extends TestCase {
     {
         String[] args = new String[3];
         args[0] = "original.txt";
-        args[1] = "1"; // Buffer pool size
+        args[1] = "3"; // Buffer pool size
         args[2] = "statFile.txt";
         //" a"
         FileGenerator f = new FileGenerator();
@@ -97,7 +97,7 @@ public class MergesortTest extends TestCase {
     {
         String[] args = new String[3];
         args[0] = "original.txt";
-        args[1] = "1"; // Buffer pool size
+        args[1] = "3"; // Buffer pool size
         args[2] = "statFile.txt";
         //" a"
         FileGenerator f = new FileGenerator();
@@ -128,7 +128,7 @@ public class MergesortTest extends TestCase {
     {
         String[] args = new String[3];
         args[0] = "original.txt";
-        args[1] = "1"; // Buffer pool size
+        args[1] = "3"; // Buffer pool size
         args[2] = "statFile.txt";
         //" a"
         FileGenerator f = new FileGenerator();

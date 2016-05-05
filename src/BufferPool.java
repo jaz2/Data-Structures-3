@@ -116,10 +116,10 @@ public class BufferPool {
         {
             i++;
         }
-        if (i < blox.length 
+        if ( i < blox.length
                 && blox[i] != null 
-                && blockN == blox[i].block 
-                && f == blox[i].file)
+                /*&& blockN == blox[i].block 
+                && f == blox[i].file*/)
         { //send back to merge sort
             System.arraycopy(blox[i].data, posInBlock, 
                     bytes, 0, numBytesRead);
@@ -173,11 +173,11 @@ public class BufferPool {
         {
             i++;
         }
-        if ( i < blox.length                 
+        if ( i < blox.length                
                 && blox[i] != null
-                && blockN == blox[i].block
-                && f == blox[i].file)
-        {
+                /*&& blockN == blox[i].block
+                && f == blox[i].file*/)
+        { 
             System.arraycopy(bytes, 0, blox[i].data, 
                     posInBlock, numBytesToWrite);
             blox[i].dbit = true;
